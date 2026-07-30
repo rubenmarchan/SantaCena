@@ -98,6 +98,18 @@ body {
 .turn-from { color: var(--linen-mute); }
 .turn-to   { color: var(--linen); }
 
+/* Atribución: las citas son del Apóstol de Jesucristo
+   Naasón Joaquín García. */
+.attrib {
+  margin: 1.5rem 0 0;
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--gold);
+}
+
 /* ── portada ───────────────────────────────────────────────────── */
 
 .lede {
@@ -339,7 +351,9 @@ a:focus-visible {
       <span class="turn turn-to">Has llegado porque su sangre te ha limpiado.</span>
     </h1>
 
-    <p class="sub reveal" style="--d:.16s">Una invitación a la Santa Cena del Señor</p>
+    <p class="attrib reveal" style="--d:.14s">&mdash; Apóstol de Jesucristo Naasón Joaquín García</p>
+
+    <p class="sub reveal" style="--d:.20s">Una invitación a la Santa Cena del Señor</p>
 
     <p class="when reveal" style="--d:.22s">
       <b>{{date}}</b> &middot; {{time}}<br>
@@ -401,7 +415,9 @@ a:focus-visible {
       <span class="turn turn-to">sino para los que llegan con hambre de perdón.</span>
     </p>
 
-    <div class="diamond reveal" style="--d:.12s" aria-hidden="true"></div>
+    <p class="attrib reveal" style="--d:.10s">&mdash; Apóstol de Jesucristo Naasón Joaquín García</p>
+
+    <div class="diamond reveal" style="--d:.14s" aria-hidden="true"></div>
 
     <div class="facts reveal" style="--d:.16s">
       <div>
