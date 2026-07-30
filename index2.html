@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santa Cena — Invitación</title>
+<meta name="description" content="Una invitación a la Santa Cena del Señor.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   Santa Cena — invitación
+   Azul noche y oro. Sin imágenes: solo tipografía, aire y filos de oro.
+
+   El recurso que sostiene la página: cada frase gira de lo propio a lo
+   suyo. Esa vuelta se ve — la primera mitad se apaga, la segunda se
+   enciende. La forma dice lo mismo que el texto.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --night:      #04182b;
+  --navy:       #082746;
+  --navy-lift:  #0d3459;
+  --gold:       #cbb058;
+  --gold-lift:  #e3ce86;
+  --linen:      #f7f5f1;
+  --linen-dim:  rgba(247, 245, 241, 0.60);
+  /* La mitad "apagada" del giro debe leerse recesiva, no ilegible:
+     0.52 la mantiene por encima de 4.4:1 sobre el azul noche. */
+  --linen-mute: rgba(247, 245, 241, 0.52);
+
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:  "Karla", "Helvetica Neue", Arial, sans-serif;
+  --caps:  "Cinzel", Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--night);
+  background-image:
+    radial-gradient(ellipse 120% 42% at 50% 0%, rgba(13, 52, 89, 0.62), transparent 72%),
+    radial-gradient(ellipse 90% 34% at 50% 100%, rgba(203, 176, 88, 0.07), transparent 74%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--linen);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── estructura ────────────────────────────────────────────────── */
+
+.wrap {
+  width: 100%;
+  max-width: 34rem;              /* medida de lectura, no de pantalla */
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.band { padding-block: 4.5rem; }
+.band-hero { padding-block: 5rem 4.5rem; }
+.band-close { padding-block: 4.5rem 3rem; }
+
+.edge { border-top: 1px solid rgba(203, 176, 88, 0.20); }
+
+/* ── etiquetas ─────────────────────────────────────────────────── */
+
+.label {
+  margin: 0 0 2.25rem;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mark {
+  margin: 0 0 1.75rem;
+  font-family: var(--caps);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── el giro: apagado → encendido ──────────────────────────────── */
+
+.turn { display: block; }
+.turn-from { color: var(--linen-mute); }
+.turn-to   { color: var(--linen); }
+
+/* ── portada ───────────────────────────────────────────────────── */
+
+.lede {
+  margin: 0;
+  font-size: 1.95rem;
+  font-weight: 300;
+  line-height: 1.24;
+  letter-spacing: -0.005em;
+}
+
+.lede .turn-to { color: var(--gold-lift); }
+
+.sub {
+  margin: 2.25rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--linen-dim);
+}
+
+.when {
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--linen-dim);
+}
+
+.when b { font-style: normal; font-weight: 500; color: var(--linen); }
+
+/* ── contrastes ────────────────────────────────────────────────── */
+
+.couplet {
+  margin: 0 0 2.5rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.36;
+}
+
+.couplet:last-of-type { margin-bottom: 0; }
+
+.aphorism {
+  margin: 3rem 0 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--gold);
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.42;
+  color: var(--linen);
+}
+
+/* ── pan y copa ────────────────────────────────────────────────── */
+
+.pair { margin: 0 0 2.75rem; }
+.pair:last-of-type { margin-bottom: 0; }
+
+.pair-name {
+  margin: 0 0 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pair-body {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--linen-dim);
+}
+
+.pair-body b { font-weight: 500; color: var(--linen); }
+
+.cite {
+  margin: 2.75rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--linen-mute);
+}
+
+/* ── cierre ────────────────────────────────────────────────────── */
+
+.call {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 300;
+  line-height: 1.32;
+}
+
+.call .turn-to { color: var(--gold-lift); }
+
+.diamond {
+  width: 7px;
+  height: 7px;
+  margin: 3rem 0;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.fact-k {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.fact-v {
+  margin: 0.2rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--linen);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 2.75rem;
+}
+
+.btn {
+  display: block;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: var(--gold-lift);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn:hover, .btn:focus-visible { background: var(--gold); color: var(--night); }
+
+.btn-quiet {
+  border-color: rgba(203, 176, 88, 0.34);
+  color: var(--linen-dim);
+}
+
+.btn-quiet:hover, .btn-quiet:focus-visible { background: transparent; border-color: var(--gold); color: var(--gold-lift); }
+
+.foot {
+  margin: 0;
+  padding-block: 2.5rem 3rem;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--linen-mute);
+}
+
+/* ── foco visible ──────────────────────────────────────────────── */
+
+a:focus-visible {
+  outline: 2px solid var(--gold-lift);
+  outline-offset: 3px;
+}
+
+/* ── aparición al desplazar (mejora progresiva) ────────────────── */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition-delay: var(--d, 0s);
+}
+
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* ── pantallas mayores ─────────────────────────────────────────── */
+
+@media (min-width: 40em) {
+  body { font-size: 19px; }
+  .wrap { max-width: 38rem; padding-inline: 2.5rem; }
+  .band { padding-block: 7rem; }
+  .band-hero { padding-block: 8rem 7rem; }
+  .band-close { padding-block: 7rem 4rem; }
+  .lede { font-size: 2.9rem; }
+  .couplet { font-size: 1.75rem; margin-bottom: 3rem; }
+  .aphorism { font-size: 1.4rem; margin-top: 4rem; }
+  .call { font-size: 2.1rem; }
+  .actions { flex-direction: row; }
+  .btn { flex: 1; }
+}
+
+@media (min-width: 64em) {
+  .wrap { max-width: 42rem; }
+  .lede { font-size: 3.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Marcadores para rellenar por evento:
+        {{date}}            fecha        p. ej. Jueves 14 de febrero
+        {{time}}            hora         p. ej. 7:00 PM
+        {{location}}        lugar        p. ej. Casa de Oración, Anaheim
+        {{directions_url}}  enlace a mapa
+        {{rsvp_url}}        enlace para confirmar asistencia
+     ═══════════════════════════════════════════════════════════════ -->
+
+<header class="band band-hero">
+  <div class="wrap">
+    <p class="mark reveal">Santa Cena</p>
+
+    <h1 class="lede reveal" style="--d:.08s">
+      <span class="turn turn-from">No has venido porque seas digno por ti mismo.</span>
+      <span class="turn turn-to">Has llegado porque su sangre te ha limpiado.</span>
+    </h1>
+
+    <p class="sub reveal" style="--d:.16s">Una invitación a la Santa Cena del Señor</p>
+
+    <p class="when reveal" style="--d:.22s">
+      <b>{{date}}</b> &middot; {{time}}<br>
+      {{location}}
+    </p>
+  </div>
+</header>
+
+<section class="band edge" aria-labelledby="s-digno">
+  <div class="wrap">
+    <h2 class="label reveal" id="s-digno">No eres digno &mdash; y está bien</h2>
+
+    <p class="couplet reveal" style="--d:.06s">
+      <span class="turn turn-from">No mires únicamente tus manchas,</span>
+      <span class="turn turn-to">mira también su sangre derramada por ti.</span>
+    </p>
+
+    <p class="couplet reveal" style="--d:.12s">
+      <span class="turn turn-from">No examines solamente tu pobreza.</span>
+      <span class="turn turn-to">Considera la riqueza de su gracia.</span>
+    </p>
+
+    <p class="aphorism reveal" style="--d:.18s">
+      El paciente no huye del médico si desea vivir.
+    </p>
+  </div>
+</section>
+
+<section class="band edge" aria-labelledby="s-mesa">
+  <div class="wrap">
+    <h2 class="label reveal" id="s-mesa">El pan y la copa</h2>
+
+    <div class="pair reveal" style="--d:.06s">
+      <h3 class="pair-name">El pan</h3>
+      <p class="pair-body">
+        Este pan me habla de <b>un cuerpo herido por mí</b>. La vida no le fue
+        arrebatada: la entregó, y la entregó para rescatarme.
+      </p>
+    </div>
+
+    <div class="pair reveal" style="--d:.12s">
+      <h3 class="pair-name">La copa</h3>
+      <p class="pair-body">
+        Esta copa me habla de <b>sangre inocente</b>. El precio de nuestra paz no
+        fue pequeño: fue el sacrificio del Hijo de Dios.
+      </p>
+    </div>
+
+    <p class="cite reveal" style="--d:.18s">1 Corintios 11:23&ndash;26 &middot; RV1960</p>
+  </div>
+</section>
+
+<section class="band band-close edge" aria-labelledby="s-mesa-abierta">
+  <div class="wrap">
+    <h2 class="label reveal" id="s-mesa-abierta">La mesa está puesta</h2>
+
+    <p class="call reveal" style="--d:.06s">
+      <span class="turn turn-from">No es una mesa para los que no sienten necesidad,</span>
+      <span class="turn turn-to">sino para los que llegan con hambre de perdón.</span>
+    </p>
+
+    <div class="diamond reveal" style="--d:.12s" aria-hidden="true"></div>
+
+    <div class="facts reveal" style="--d:.16s">
+      <div>
+        <p class="fact-k">Fecha</p>
+        <p class="fact-v">{{date}}</p>
+      </div>
+      <div>
+        <p class="fact-k">Hora</p>
+        <p class="fact-v">{{time}}</p>
+      </div>
+      <div>
+        <p class="fact-k">Lugar</p>
+        <p class="fact-v">{{location}}</p>
+      </div>
+    </div>
+
+    <div class="actions reveal" style="--d:.22s">
+      <a class="btn" href="{{rsvp_url}}">Confirmar asistencia</a>
+      <a class="btn btn-quiet" href="{{directions_url}}">Cómo llegar</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="foot">Santa Cena &middot; La Luz del Mundo</p>
+</footer>
+
+<script>
+/* Mejora progresiva: sin JS todo se ve igual, solo sin la aparición. */
+document.documentElement.classList.add('js');
+addEventListener('DOMContentLoaded', function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    for (var i = 0; i < items.length; i++) items[i].classList.add('is-in');
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+  items.forEach(function (el) { io.observe(el); });
+});
+</script>
+
+</body>
+</html>
