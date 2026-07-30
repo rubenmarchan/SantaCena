@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Santa Cena — transmisión en vivo
+   Paleta tomada de la identidad histórica: azul noche, oro, lino.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --night:     #04182b;   /* fondo, más profundo que el azul de marca */
+  --navy:      #082746;   /* azul de marca */
+  --navy-lift: #0d3459;   /* bordes y superficies elevadas */
+  --gold:      #cbb058;   /* oro de marca */
+  --gold-lift: #e3ce86;   /* oro claro, para texto sobre azul */
+  --linen:     #f7f5f1;   /* texto principal */
+  --linen-dim: rgba(247, 245, 241, 0.62);
+
+  --display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --text:    "Karla", "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 68rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--night);
+  color: var(--linen);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+
+  /* Halo tenue detrás de todo: la página parece iluminada desde el centro. */
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% 38%, rgba(203, 176, 88, 0.13), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(13, 52, 89, 0.55), transparent 75%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1.15rem, 5vw, 2.5rem) 3rem;
+}
+
+/* ───────────────────────── cabecera ───────────────────────── */
+
+.masthead { text-align: center; }
+
+.eyebrow {
+  margin: 0;
+  font-size: clamp(0.62rem, 1.6vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-right: -0.42em;        /* compensa el espacio final del tracking */
+}
+
+.wordmark {
+  margin: 0.55em 0 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 10vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-right: -0.06em;
+  color: var(--linen);
+}
+
+.rule {
+  width: min(13rem, 42vw);
+  height: 2px;
+  margin: clamp(1rem, 3vw, 1.6rem) auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-lift) 20%, var(--gold-lift) 80%, transparent);
+}
+
+.standfirst {
+  margin: 1.05rem 0 0;
+  font-size: clamp(0.78rem, 2vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-right: -0.3em;
+  color: var(--linen-dim);
+}
+
+/* ──────────────── el video: la fuente de luz ────────────────
+   Único elemento con brillo. Todo lo demás se mantiene apagado
+   para que la transmisión sea lo que ilumina la página.        */
+
+.stage { margin-top: clamp(2.5rem, 7vw, 4.25rem); }
+
+.screen { position: relative; }
+
+/* Resplandor detrás del marco. */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: -9% -6%;
+  background: radial-gradient(ellipse at center, rgba(203, 176, 88, 0.46), transparent 70%);
+  filter: blur(44px);
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+  animation: breathe 7s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.80; transform: scale(0.99); }
+  50%      { opacity: 1;    transform: scale(1.015); }
+}
+
+.screen-frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(203, 176, 88, 0.72);
+  border-radius: 3px;
+  background: #000;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 6px rgba(8, 39, 70, 0.85),
+    0 0 34px -4px rgba(203, 176, 88, 0.30),
+    0 26px 70px -18px rgba(0, 0, 0, 0.85);
+}
+
+.screen-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Navegadores sin aspect-ratio: reserva 16:9 con padding. */
+@supports not (aspect-ratio: 16 / 9) {
+  .screen-frame { height: 0; padding-bottom: 56.25%; }
+  .screen-frame iframe { position: absolute; inset: 0; height: 100%; }
+}
+
+.onair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  margin: 1.5rem 0 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin-right: -0.26em;
+  color: var(--gold-lift);
+}
+
+.onair-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(203, 176, 88, 0.18);
+  flex: none;
+}
+
+.onair-date { color: var(--linen-dim); font-weight: 500; }
+
+/* ───────────────────────── notas ───────────────────────── */
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 3.5vw, 2.5rem);
+  max-width: 52rem;
+  margin: clamp(3rem, 8vw, 4.75rem) auto 0;
+  padding-top: clamp(1.75rem, 4vw, 2.5rem);
+  border-top: 1px solid rgba(203, 176, 88, 0.22);
+  text-align: center;
+}
+
+.note-title {
+  margin: 0 0 0.5em;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-right: -0.24em;
+  color: var(--gold);
+}
+
+.note-body {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--linen-dim);
+}
+
+.note-body strong { color: var(--linen); font-weight: 700; }
+
+/* ───────────────────────── pie ───────────────────────── */
+
+.colophon {
+  margin-top: clamp(3rem, 8vw, 4.5rem);
+  text-align: center;
+}
+
+.colophon p {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-right: -0.28em;
+  color: rgba(247, 245, 241, 0.34);
+}
+
+/* ───────────────────────── responsive ───────────────────────── */
+
+@media (max-width: 720px) {
+  .notes {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    max-width: 26rem;
+  }
+  .screen::before { inset: -6% -3%; filter: blur(26px); }
+}
+
+@media (max-width: 400px) {
+  .eyebrow { letter-spacing: 0.3em; margin-right: -0.3em; }
+}
+
+/* ───────────────────────── accesibilidad ───────────────────────── */
+
+a:focus-visible,
+iframe:focus-visible {
+  outline: 2px solid var(--gold-lift);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen::before { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}

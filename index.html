@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santa Cena — Transmisión en vivo</title>
+<meta name="description" content="Transmisión en vivo de la Santa Cena.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">La Luz del Mundo</p>
+    <h1 class="wordmark">Santa Cena</h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="standfirst">Transmisión en vivo</p>
+  </header>
+
+  <main class="stage">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         VIDEO DEL DÍA · cambiar aquí
+
+         Reemplaza VIDEO_ID abajo por el ID del video de hoy.
+         El ID es la parte después de "v=" en el enlace de YouTube:
+             https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                                             └──── este ────┘
+
+         Es lo único que hay que editar cada día.
+
+         ── Alternativa sin edición diaria ──────────────────────────────
+         Si siempre transmiten desde el mismo canal, usa esta dirección
+         en su lugar y YouTube mostrará automáticamente lo que esté en
+         vivo en ese canal, sin cambiar nada cada día:
+
+           https://www.youtube-nocookie.com/embed/live_stream?channel=ID_DEL_CANAL
+
+         (ID_DEL_CANAL empieza con "UC…". Si no hay transmisión activa,
+         el reproductor aparece vacío, por eso el ID de video es la
+         opción más segura para un evento puntual.)
+         ══════════════════════════════════════════════════════════════ -->
+
+    <div class="screen">
+      <div class="screen-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+          title="Transmisión en vivo de la Santa Cena"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <p class="onair">
+      <span class="onair-dot" aria-hidden="true"></span>
+      En vivo &middot; <span class="onair-date">Hoy</span>
+    </p>
+
+  </main>
+
+  <section class="notes" aria-label="Información de la transmisión">
+    <div class="note">
+      <h2 class="note-title">Horario</h2>
+      <p class="note-body">La transmisión comienza a las <strong>8:00&nbsp;PM</strong>.</p>
+    </div>
+    <div class="note">
+      <h2 class="note-title">Si no ves nada</h2>
+      <p class="note-body">Actualiza la página unos minutos antes de la hora de inicio.</p>
+    </div>
+    <div class="note">
+      <h2 class="note-title">Pantalla completa</h2>
+      <p class="note-body">Usa el icono en la esquina del reproductor para ver en grande.</p>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <p>Santa Cena &middot; La Luz del Mundo</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
