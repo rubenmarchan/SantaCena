@@ -10,6 +10,8 @@ index4.html   copia de santaconvocacionlldm.org/index-scna2026.html
               con las noticias en vivo (ver abajo)
 index5.html   igual que index4, pero sin el video: en su hueco va el
               cartel de la Santa Cena 2026
+index5Eng.html  la versión en inglés de index5, con las noticias de
+              holysupper.org en vez de santaconvocacionlldm.org
 images/       imágenes propias del repositorio
 ```
 
@@ -56,6 +58,49 @@ a 1440 y a 390px — el video queda exactamente en el hueco del cartel.
 
 Para volver al cartel, se deshace el cambio. Y si algún día conviene tener los
 dos, cabe dejar la imagen debajo del video dentro del mismo `div`.
+
+## `index5Eng.html` — la misma página, en inglés y con las noticias de Holy Supper
+
+Copia de `index5.html` (mismo cartel, mismo diseño, mismo listado que se
+actualiza solo) con dos diferencias:
+
+1. **De dónde salen las entradas.** El bloque **NOTICIAS DINÁMICAS** apunta al
+   sitio en inglés:
+
+   ```js
+   var CFG = {
+       sitio      : 'https://holysupper.org',
+       categoria  : 2,             // 2 = "Holy Supper"
+       porPagina  : 9,
+       refrescoMs : 5 * 60 * 1000
+   };
+   ```
+
+   Esas entradas las pone el bot `lldm-fb-sync` desde la página de Facebook
+   *Holy Supper TLOTW*, y el archivo de 2024 ya está publicado (91 entradas),
+   así que la página trae contenido desde el primer día. Lo que se sincronice de
+   ahora en adelante entra como borrador y sale aquí en cuanto alguien le da
+   `/publish` en Telegram — el mismo circuito de siempre.
+
+2. **Todo el texto visible está en inglés**: el menú, el titular del intro
+   (*A call to communion with Christ*), el pie, y también los textos que arma el
+   JavaScript (*See more posts*, *Read post*, *Showing 9 of 91 posts*, los
+   avisos de error). Las fechas se formatean con `en-US`, así que salen como
+   *August 26, 2024* en vez de *26 de agosto de 2024*. Los comentarios del
+   código siguen en español, como en el resto del repositorio.
+
+Los favicons apuntan a `holysupper.org/images/…` (existen, comprobado). El
+enlace de Facebook de la cabecera y del intro va a `facebook.com/holysupper`.
+
+**Dos cosas quedaron a propósito como estaban** — se cambian en cuanto haya con
+qué:
+
+- El cartel del hueco del intro sigue siendo `images/santacena2026.jpg`, el de
+  la Santa Cena 2026 en español. No hay una versión en inglés en el repositorio.
+  Se cambia igual que se explica arriba para el video.
+- Los enlaces de Instagram y X siguen siendo los de `santaconvocacionlldm` — no
+  se conocen cuentas propias de Holy Supper. Si las hay, están en dos sitios en
+  el archivo (cabecera e intro).
 
 ## `index4.html` — noticias en vivo desde WordPress
 
