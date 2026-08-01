@@ -92,15 +92,15 @@ actualiza solo) con dos diferencias:
 Los favicons apuntan a `holysupper.org/images/…` (existen, comprobado). El
 enlace de Facebook de la cabecera y del intro va a `facebook.com/holysupper`.
 
-**Dos cosas quedaron a propósito como estaban** — se cambian en cuanto haya con
-qué:
+El cartel del hueco del intro es `images/holysupper2026.jpg`, la versión en
+inglés del cartel (*Holy Supper 2026 — Holiness which unites us to our Lord*),
+1280x720 igual que el español. Como el de `index5.html`, vive en el repositorio
+y no enlazado desde Google Drive, que corta los enlaces directos a imágenes. Se
+cambia por un video igual que se explica arriba.
 
-- El cartel del hueco del intro sigue siendo `images/santacena2026.jpg`, el de
-  la Santa Cena 2026 en español. No hay una versión en inglés en el repositorio.
-  Se cambia igual que se explica arriba para el video.
-- Los enlaces de Instagram y X siguen siendo los de `santaconvocacionlldm` — no
-  se conocen cuentas propias de Holy Supper. Si las hay, están en dos sitios en
-  el archivo (cabecera e intro).
+**Una cosa quedó a propósito como estaba**: los enlaces de Instagram y X siguen
+siendo los de `santaconvocacionlldm` — no se conocen cuentas propias de Holy
+Supper. Si las hay, están en dos sitios en el archivo (cabecera e intro).
 
 ## `index4.html` — noticias en vivo desde WordPress
 
