@@ -8,7 +8,27 @@ index.html    la página
 styles.css    los estilos
 index4.html   copia de santaconvocacionlldm.org/index-scna2026.html
               con las noticias en vivo (ver abajo)
+index5.html   igual que index4, pero sin el video: en su hueco va el
+              cartel de la Santa Cena 2026
+images/       imágenes propias del repositorio
 ```
+
+`index4.html` se queda como está a propósito, para poder comparar las dos o
+volver atrás. Los cambios nuevos van en `index5.html`.
+
+## `index5.html` — sin video, con el cartel
+
+Lo mismo que `index4.html`, con un cambio: el reproductor de YouTube del intro
+ya no está. En su hueco — misma medida (560px, 16:9), mismo sitio, centrado
+igual — va `images/santacena2026.jpg`, el cartel oficial de la Santa Cena 2026.
+
+La imagen vive en el repositorio, no enlazada desde Google Drive: Drive corta
+los enlaces directos a imágenes y obligaría a dejar el archivo público para
+siempre.
+
+Para volver a poner un video, se cambia el contenido de `#video-hueco` por el
+`<iframe>`; el marco no se mueve porque los estilos son del contenedor, no de
+la imagen.
 
 ## `index4.html` — noticias en vivo desde WordPress
 
