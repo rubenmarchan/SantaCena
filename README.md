@@ -54,6 +54,15 @@ monograma.
   quedarse en blanco.
 - Los favicons se cambiaron a URL absoluta porque las rutas `/images/…` del
   original no existen bajo `rubenmarchan.github.io/SantaCena/`.
+- Se quitó la sección de Instagram del final (`#contact`), que en el original
+  era un marcador de posición sin terminar — decía *"embed of holysupper
+  iglesia.lldm"*, con media frase en blanco sobre fondo blanco. Con ella se
+  quitó su entrada del menú (*Newsletter*), que apuntaba a esa ancla. Los
+  enlaces al perfil de Instagram siguen en la cabecera y en el intro.
+- El menú conserva dos entradas del original que no llevan a ninguna parte,
+  *Ceremonia de Bautismos 2025* (`#services`) y *Ceremonia de Santa Cena 2025*
+  (`#portfolio`): esas secciones no existen en la página, ni aquí ni en el
+  original. Se dejaron como estaban.
 
 ### El reproductor del intro
 
