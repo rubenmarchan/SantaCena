@@ -98,9 +98,10 @@ inglés del cartel (*Holy Supper 2026 — Holiness which unites us to our Lord*)
 y no enlazado desde Google Drive, que corta los enlaces directos a imágenes. Se
 cambia por un video igual que se explica arriba.
 
-**Una cosa quedó a propósito como estaba**: los enlaces de Instagram y X siguen
-siendo los de `santaconvocacionlldm` — no se conocen cuentas propias de Holy
-Supper. Si las hay, están en dos sitios en el archivo (cabecera e intro).
+Las tres redes de la cabecera y del intro son las de Holy Supper, no las de
+Santa Convocación: `facebook.com/holysupper`, `instagram.com/holysuppertlotw` y
+`x.com/HolySupperTLOTW`. Cada una aparece dos veces en el archivo (cabecera e
+intro), así que si alguna cambia hay que tocar los dos sitios.
 
 ## `index4.html` — noticias en vivo desde WordPress
 
