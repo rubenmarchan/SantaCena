@@ -6,7 +6,55 @@ sin JavaScript y sin dependencias que compilar.
 ```
 index.html    la página
 styles.css    los estilos
+index4.html   copia de santaconvocacionlldm.org/index-scna2026.html
+              con las noticias en vivo (ver abajo)
 ```
+
+## `index4.html` — noticias en vivo desde WordPress
+
+Es la misma página de `santaconvocacionlldm.org/index-scna2026.html`, con un
+cambio: donde antes había un `<iframe>` fijo apuntando a
+`lldmcentenario.org/scna_sample/`, ahora hay un listado que se arma solo leyendo
+la API REST de WordPress del sitio.
+
+No hay nada que regenerar ni volver a subir. **Cuando una entrada se publica en
+`santaconvocacionlldm.org`, aparece aquí sola**: al abrir la página, cada cinco
+minutos mientras esté abierta, y al volver a la pestaña después de un rato. Si el
+visitante todavía está en la primera tanda, la lista se refresca sin que lo note;
+si ya pulsó *Ver más publicaciones*, sale un botón para actualizar y no moverle
+el suelo mientras lee.
+
+Los borradores no salen: la API solo entrega lo publicado. Así que el circuito
+completo es el de siempre — el bot sincroniza el post de Facebook, alguien lo
+revisa y le da `/publish` en Telegram, y en cuanto está publicado la página lo
+muestra.
+
+### Lo que se puede ajustar
+
+Al final de `index4.html`, en el bloque marcado **NOTICIAS DINÁMICAS**:
+
+```js
+var CFG = {
+    sitio      : 'https://santaconvocacionlldm.org',
+    categoria  : 11,            // 11 = "Santa Convocación"; null = todas
+    porPagina  : 9,             // tarjetas por tanda
+    refrescoMs : 5 * 60 * 1000  // cada cuánto busca entradas nuevas
+};
+```
+
+El resto (imagen destacada, fecha, resumen, enlace) sale de la propia entrada.
+Si una entrada no trae imagen destacada, en su lugar va un recuadro azul con el
+monograma.
+
+### Notas
+
+- Funciona desde cualquier dominio porque WordPress responde con
+  `Access-Control-Allow-Origin`. Si algún día el sitio deja de mandar esa
+  cabecera, el listado mostrará un aviso con botón de reintentar en vez de
+  quedarse en blanco.
+- La sección `#intro` (el video) quedó igual que en el original. Los favicons se
+  cambiaron a URL absoluta porque las rutas `/images/…` del original no existen
+  bajo `rubenmarchan.github.io/SantaCena/`.
 
 ## Cambiar el video de cada día
 
