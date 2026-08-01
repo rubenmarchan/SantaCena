@@ -59,10 +59,12 @@ monograma.
   iglesia.lldm"*, con media frase en blanco sobre fondo blanco. Con ella se
   quitó su entrada del menú (*Newsletter*), que apuntaba a esa ancla. Los
   enlaces al perfil de Instagram siguen en la cabecera y en el intro.
-- El menú conserva dos entradas del original que no llevan a ninguna parte,
-  *Ceremonia de Bautismos 2025* (`#services`) y *Ceremonia de Santa Cena 2025*
-  (`#portfolio`): esas secciones no existen en la página, ni aquí ni en el
-  original. Se dejaron como estaban.
+- Los años del menú pasaron de 2025 a 2026.
+- *Ceremonia de Bautismos 2026* y *Ceremonia de Santa Cena 2026* apuntan a `#`.
+  En el original iban a `#services` y `#portfolio`, secciones que no existen en
+  la página. Con `#`, la librería MoveTo del tema lo trata aparte y sube al
+  principio en vez de no hacer nada. Cuando esas secciones existan, basta con
+  devolverles su ancla.
 
 ### El reproductor del intro
 
