@@ -26,9 +26,36 @@ La imagen vive en el repositorio, no enlazada desde Google Drive: Drive corta
 los enlaces directos a imágenes y obligaría a dejar el archivo público para
 siempre.
 
-Para volver a poner un video, se cambia el contenido de `#video-hueco` por el
-`<iframe>`; el marco no se mueve porque los estilos son del contenedor, no de
-la imagen.
+### Cambiar el cartel por el video
+
+Los estilos son del contenedor, no de lo que va dentro, así que el marco no se
+mueve: sirve igual una imagen, un `<iframe>` o un `<video>`.
+
+En `index5.html`, busca `id="video-hueco"`. Verás esto:
+
+```html
+<div class="video-hueco" id="video-hueco">
+    <img src="images/santacena2026.jpg" alt="Santa Cena 2026 — ..." width="1280" height="720">
+</div>
+```
+
+Cambia la línea del `<img>` por esta otra, poniendo el identificador del video
+donde dice `ID_DEL_VIDEO`:
+
+```html
+<iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO" title="Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+```
+
+El identificador es lo que sigue a `v=` en el enlace de YouTube
+(`youtube.com/watch?v=dECnseeljYw` → `dECnseeljYw`).
+
+No hay que tocar nada más: ni el ancho, ni el alto, ni el centrado. Comprobado
+a 1440 y a 390px — el video queda exactamente en el hueco del cartel.
+
+Para volver al cartel, se deshace el cambio. Y si algún día conviene tener los
+dos, cabe dejar la imagen debajo del video dentro del mismo `div`.
 
 ## `index4.html` — noticias en vivo desde WordPress
 
