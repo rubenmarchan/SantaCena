@@ -52,9 +52,26 @@ monograma.
   `Access-Control-Allow-Origin`. Si algún día el sitio deja de mandar esa
   cabecera, el listado mostrará un aviso con botón de reintentar en vez de
   quedarse en blanco.
-- La sección `#intro` (el video) quedó igual que en el original. Los favicons se
-  cambiaron a URL absoluta porque las rutas `/images/…` del original no existen
-  bajo `rubenmarchan.github.io/SantaCena/`.
+- Los favicons se cambiaron a URL absoluta porque las rutas `/images/…` del
+  original no existen bajo `rubenmarchan.github.io/SantaCena/`.
+
+### El reproductor del intro
+
+Dos arreglos respecto al original:
+
+- **Centrado.** El recuadro del video es un `div` de 560px sin márgenes, así que
+  se quedaba pegado a la izquierda aunque el título de arriba fuera centrado.
+  Ahora lleva `margin: 0 auto` y queda centrado en cualquier ancho.
+- **Se veía "This video is private".** El recuadro es una miniatura de
+  `dECnseeljYw` que carga el video al pulsarla, pero traía dentro un `<iframe>`
+  de otro video, `nwDqFtZp3ms`, que YouTube ya no sirve (403). Ese iframe tapaba
+  la miniatura con el aviso de video privado. Se quitó, y el reproductor hace lo
+  que ya pretendía hacer: muestra la miniatura y al pulsarla arranca
+  *Ecos de la Santa Cena 2025 en Hermosa Provincia*.
+
+Si en algún momento hay que cambiar el video, es el identificador
+`dECnseeljYw` — aparece tres veces seguidas en el bloque `.lite-yt`
+(id, miniatura de fondo y `src` del reproductor que se carga al pulsar).
 
 ## Cambiar el video de cada día
 

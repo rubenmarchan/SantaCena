@@ -5143,6 +5143,27 @@ img.u-pull-left {
  * documento (buscar "NOTICIAS DINÁMICAS") para la configuración.
  * ------------------------------------------------------------------- */
 
+/* --- el reproductor del intro ------------------------------------------
+ * En el original el bloque .lite-yt es un div de 560px sin márgenes, así que
+ * se pegaba a la izquierda aunque el título de arriba vaya centrado; y el
+ * <iframe> que lleva dentro mide 720x405 por atributo, o sea que sobresalía
+ * del recuadro y el overflow:hidden se lo comía por la derecha. Con esto el
+ * recuadro se centra a cualquier ancho y el vídeo llena su propio marco.
+ * ---------------------------------------------------------------------- */
+.s-intro__more .lite-yt {
+    margin-left  : auto;
+    margin-right : auto;
+}
+
+.s-intro__more .lite-yt iframe {
+    position : absolute;
+    top      : 0;
+    left     : 0;
+    width    : 100%;
+    height   : 100%;
+    border   : 0;
+}
+
 /* el contenedor original topa en 1000px; el retículo necesita más aire */
 .s-about__content { max-width: 1240px; }
 
@@ -5467,7 +5488,7 @@ comunión con Cristo.</h1>
                         <div class="s-intro__more">
 							<div class="lite-yt" id="lite-yt-dECnseeljYw" style="position:relative;width:560px;max-width:100%;aspect-ratio:16/9;cursor:pointer;background:#000 url('https://img.youtube.com/vi/dECnseeljYw/hqdefault.jpg') center/cover no-repeat;border-radius:8px;overflow:hidden;" onclick="
 							this.innerHTML = '<iframe width=&quot;560&quot; height=&quot;315&quot; style=&quot;width:100%;height:100%;position:absolute;top:0;left:0;&quot; src=&quot;https://www.youtube.com/embed/dECnseeljYw?autoplay=1&amp;si=v5bQKxrBKOPZtl6W&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen></iframe>';
-						"><iframe width="720" height="405" src="https://www.youtube.com/embed/nwDqFtZp3ms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						">
 							<svg viewBox="0 0 68 48" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;">
 								<path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,0.13,34,0,34,0S12.21,0.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
 								<path d="M 45,24 27,14 27,34" fill="#fff"></path>
