@@ -103,6 +103,38 @@ Santa Convocación: `facebook.com/holysupper`, `instagram.com/holysuppertlotw` y
 `x.com/HolySupperTLOTW`. Cada una aparece dos veces en el archivo (cabecera e
 intro), así que si alguna cambia hay que tocar los dos sitios.
 
+### La galería de Instagram (`#gallery`)
+
+Debajo de las noticias hay una tercera sección: una rejilla de 12 fotos de
+`@holysuppertlotw` con lightbox (flechas, Esc, enlace al post). Solo está en
+`index5Eng.html`; el menú la enlaza como **Instagram**.
+
+Las fotos **no** vienen de Instagram en directo. El bot `lldm-fb-sync` copia
+cada hora las más recientes a la *Biblioteca de medios* de `holysupper.org`, y
+esta página lee esa biblioteca:
+
+```
+https://holysupper.org/wp-json/wp/v2/media?search=igfeed
+```
+
+Es una petición a otro dominio, y funciona porque WordPress responde la API
+REST con `Access-Control-Allow-Origin` devolviendo quien llama — comprobado en
+Chrome desde GitHub Pages. Se hace así porque los enlaces que da la API de
+Instagram están firmados y caducan en días: una galería enlazada directamente
+se quedaría en blanco sola.
+
+Si la biblioteca está vacía o no responde, **la sección entera no aparece**: no
+deja un hueco ni un mensaje de error. Eso también quiere decir que si un día la
+galería desaparece de la página, lo que hay que mirar es el cron del bot, no
+este archivo.
+
+El bloque (marcado `<!-- Kept verbatim from ... -->`) es una copia de
+`lldm-fb-sync/gallery/holysupper-ig-gallery.html` y no depende de nada externo:
+ni jQuery, ni `embed.js`, ni la hoja de estilos de la página. Lo único que se
+cambió al pegarlo es que `data-endpoint` es absoluto. Se ajusta con los
+atributos `data-` de la etiqueta `<section class="hsig">` (`data-count`,
+`data-heading`, `data-cta`, `data-profile`), sin tocar el JavaScript.
+
 ## `index4.html` — noticias en vivo desde WordPress
 
 Es la misma página de `santaconvocacionlldm.org/index-scna2026.html`, con un
