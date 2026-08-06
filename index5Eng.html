@@ -5060,6 +5060,16 @@ img.u-pull-left {
     --hsig-title-font : "Cinzel", var(--font-1);
 }
 
+/* El padding inferior de .s-about (var(--vspace-6), 192px) estaba dimensionado
+   para que la sección respirara antes del pie oscuro. Ahora entre medias va la
+   galería, que trae sus propios 56px, así que quedaban 248px de blanco entre
+   "Showing 9 of 96 posts" y la primera fila de fotos. Se recorta aquí, junto a
+   lo demás que toca la galería, para que quitar esa sección devuelva el
+   espaciado original sin tener que buscar la regla en otro sitio. */
+#about.s-about {
+    padding-bottom : var(--vspace-2);
+}
+
 .s-about__content {
     max-width  : 1000px;
     text-align : center;
