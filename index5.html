@@ -1676,7 +1676,7 @@ a.pswp__share--download:hover {
 /* ------------------------------------------------------------------- 
  * ## fonts 
  * ------------------------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700;800;900&display=swap");
 
 :root {
     --font-1 : "Lora", serif;
@@ -4820,6 +4820,9 @@ img.u-pull-left {
 .s-intro__title {
     --text-title-size : 10.4rem;
     --text-multiplier : 1;
+    /* Cinzel only here, not site-wide: it's a display face for the one line
+       in the hero. Cargado en el @import de arriba. */
+    font-family       : "Cinzel", var(--font-1);
     font-weight       : 700;
     font-size         : calc(var(--text-title-size) * var(--text-multiplier));
     line-height       : 1.1154;
@@ -5026,6 +5029,17 @@ img.u-pull-left {
     width            : 2px;
     height           : var(--vspace-3_5);
     margin           : 0 auto var(--vspace-0_5);
+}
+
+/* El titular de la sección de noticias, en Cinzel y en caja normal
+   ("News - Holy Supper 2026"), no en versalitas. El text-transform se quita
+   a propósito: con mayúsculas forzadas la caja del texto fuente no se ve, y
+   el letter-spacing de .2em está pensado para mayúsculas — en minúscula deja
+   la palabra suelta, así que baja a .06em. */
+.s-about .text-pretitle {
+    font-family    : "Cinzel", var(--font-1);
+    text-transform : none;
+    letter-spacing : .06em;
 }
 
 .s-about__content {
@@ -5568,7 +5582,7 @@ comunión con Cristo.</h1>
 
                 <div class="row s-about__content" data-animate-block>
                     <div class="column lg-12">
-                        <h2 class="text-pretitle" data-animate-el>Noticias - santa convocaciÓn 2026&nbsp;&nbsp;</h2>
+                        <h2 class="text-pretitle" data-animate-el>Noticias - Santa Convocación 2026</h2>
                         <div class="wp-news" id="wp-news">
 
                             <button type="button" class="wp-news__fresh" id="wp-news-fresh" hidden>

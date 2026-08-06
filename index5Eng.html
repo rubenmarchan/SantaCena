@@ -5031,6 +5031,22 @@ img.u-pull-left {
     margin           : 0 auto var(--vspace-0_5);
 }
 
+/* El titular de la sección de noticias, en Cinzel y en caja normal
+   ("News - Holy Supper 2026"), no en versalitas. El text-transform se quita
+   a propósito: con mayúsculas forzadas la caja del texto fuente no se ve, y
+   el letter-spacing de .2em está pensado para mayúsculas — en minúscula deja
+   la palabra suelta, así que baja a .06em. */
+.s-about .text-pretitle {
+    font-family    : "Cinzel", var(--font-1);
+    text-transform : none;
+    letter-spacing : .06em;
+}
+
+/* La galería expone su tipografía como custom property justo para esto. */
+#gallery .hsig {
+    --hsig-title-font : "Cinzel", var(--font-1);
+}
+
 .s-about__content {
     max-width  : 1000px;
     text-align : center;
@@ -5464,7 +5480,7 @@ img.u-pull-left {
 
                 <ul class="s-header__nav-list">
                     <li><a href="#intro" class="smoothscroll">News</a></li>
-                    <li><a href="#about" class="smoothscroll">Welcome 2026</a></li>
+                    <li><a href="#about" class="smoothscroll">Welcoming Ceremony 2026</a></li>
                     <li><a href="#gallery" class="smoothscroll">Instagram</a></li>
                     <li><a href="#" class="smoothscroll">Baptismal Ceremony 2026</a></li>
                     <li><a href="#" class="smoothscroll">Holy Supper Ceremony 2026</a></li>
@@ -5572,7 +5588,7 @@ communion with Christ.</h1>
 
                 <div class="row s-about__content" data-animate-block>
                     <div class="column lg-12">
-                        <h2 class="text-pretitle" data-animate-el>News - holy supper 2026&nbsp;&nbsp;</h2>
+                        <h2 class="text-pretitle" data-animate-el>News - Holy Supper 2026</h2>
                         <div class="wp-news" id="wp-news">
 
                             <button type="button" class="wp-news__fresh" id="wp-news-fresh" hidden>
@@ -5644,6 +5660,10 @@ communion with Christ.</h1>
 
             <style>
             .hsig{--hsig-gap:10px;--hsig-cols:4;--hsig-fg:#1a1a1a;--hsig-muted:#6b6b6b;--hsig-accent:#b8860b;
+              /* Override to give the heading a display face — holysupper.org uses Cinzel.
+                 `inherit` here means the page's own font, not the theme's h2 font, which
+                 is what an unstyled .hsig-title would otherwise pick up. */
+              --hsig-title-font:inherit;
               display:block;padding:56px 0;color:var(--hsig-fg);
               font-family:inherit;-webkit-font-smoothing:antialiased}
             .hsig[hidden]{display:none}
@@ -5651,7 +5671,8 @@ communion with Christ.</h1>
 
             .hsig-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
               gap:8px;margin:0 0 24px}
-            .hsig-title{margin:0;font-size:30px;line-height:1.2;font-weight:600;letter-spacing:.01em}
+            .hsig-title{margin:0;font-family:var(--hsig-title-font);font-size:30px;line-height:1.2;
+              font-weight:600;letter-spacing:.01em}
             .hsig-handle{font-size:15px;color:var(--hsig-accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
             .hsig-handle:hover,.hsig-handle:focus-visible{border-bottom-color:currentColor}
 
