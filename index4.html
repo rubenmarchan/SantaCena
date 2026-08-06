@@ -5038,8 +5038,21 @@ img.u-pull-left {
    la palabra suelta, así que baja a .06em. */
 .s-about .text-pretitle {
     font-family    : "Cinzel", var(--font-1);
+    font-size      : 30px;
+    line-height    : 1.2;
     text-transform : none;
     letter-spacing : .06em;
+}
+
+/* Mismo tamaño y mismo salto que el titular de la galería (.hsig-title), para
+   que las dos secciones se lean como una pareja. En px a propósito: la hoja
+   original asume html{font-size:62.5%} y --text-size vale 18px, que es de
+   donde venía la diferencia. La regla de .text-pretitle a 1000px no hace
+   falta desactivarla — ésta gana por especificidad. */
+@media screen and (max-width: 900px) {
+    .s-about .text-pretitle {
+        font-size : 25px;
+    }
 }
 
 .s-about__content {
