@@ -5435,20 +5435,29 @@ img.u-pull-left {
 ================================================== -->
 <style>
 /* ===================================================================
+ * Variante "video protagonista" de index5Eng: el hueco del video manda
+ * en el hero y el titular cede sitio. Gemela de index6.html.
+ *
  * En lugar del video va, de momento, el cartel de la Santa Cena 2026.
- * Ocupa exactamente el mismo hueco (560px, 16:9, centrado), así que
- * para volver a poner un video basta con cambiar el contenido de
- * #video-hueco por el <iframe> — el marco no se mueve.
+ * Ocupa exactamente el mismo hueco (16:9, centrado), así que para poner
+ * un video basta con cambiar el contenido de #video-hueco por el
+ * <iframe> (o un <video>) — el marco no se mueve.
+ *
+ * El ancho se calcula a partir del alto libre de la ventana para que el
+ * recuadro crezca todo lo que pueda SIN empujar el hero fuera de la
+ * pantalla: nunca menor que los 560px de antes, nunca mayor que 1200px.
+ * Como el max-width manda sobre un aspect-ratio, la proporción 16:9
+ * aguanta sola en cualquier caso.
  * ------------------------------------------------------------------- */
 .s-intro__more .video-hueco {
     position      : relative;
-    width         : 560px;
-    max-width     : 100%;
+    width         : 100%;
+    max-width     : max(560px, min(1200px, calc((92vh - 40rem) * 16 / 9)));
     aspect-ratio  : 16 / 9;
     margin        : 0 auto;
     border-radius : 8px;
     overflow      : hidden;
-    box-shadow    : 0 1.2rem 3.2rem rgba(0, 0, 0, .30);
+    box-shadow    : 0 2rem 5.6rem rgba(0, 0, 0, .45);
 }
 
 .s-intro__more .video-hueco img,
@@ -5459,6 +5468,45 @@ img.u-pull-left {
     height     : 100%;
     border     : 0;
     object-fit : cover;
+}
+
+/* El hero original mide 100vh clavados con overflow:hidden — con el
+   recuadro grande eso recortaría el botón en pantallas bajas. Aquí el
+   alto es el mínimo, no el tope, así que nada se corta nunca. */
+.s-intro {
+    height     : auto;
+    min-height : 100vh;
+}
+
+/* Con el hero en alto automático, `height:100%` ya no centra nada: el
+   bloque se quedaría pegado arriba y dejaría una franja vacía debajo en
+   pantallas altas (móvil). min-height + border-box mantiene el centrado
+   vertical mientras el contenido quepa, y deja crecer cuando no. */
+.s-intro__content {
+    box-sizing     : border-box;
+    min-height     : 100vh;
+    padding-top    : 8vh;
+    padding-bottom : 6rem;
+}
+
+/* El titular baja de 10.4rem a 6.4rem para dejarle el foco al video.
+   Los multiplicadores responsive de arriba siguen aplicándose encima. */
+.s-intro__title {
+    --text-title-size : 6.4rem;
+    margin-bottom     : var(--vspace-1);
+}
+
+.s-intro__pretitle {
+    margin-bottom : var(--vspace-0_5);
+}
+
+/* Debajo de ~800px el recuadro ya ocupa todo el ancho útil: el hueco de
+   la ventana no da para más y el titular necesita el aire. */
+@media screen and (max-width: 800px) {
+    .s-intro__content {
+        padding-top    : 12vh;
+        padding-bottom : 8rem;
+    }
 }
 </style>
 
