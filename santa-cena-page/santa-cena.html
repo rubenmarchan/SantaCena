@@ -1676,7 +1676,7 @@ a.pswp__share--download:hover {
 /* ------------------------------------------------------------------- 
  * ## fonts 
  * ------------------------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap");
 
 :root {
     --font-1 : "Lora", serif;
@@ -5191,29 +5191,54 @@ img.u-pull-left {
     border   : 0;
 }
 
-/* el contenedor original topa en 1000px; el retículo necesita más aire */
-.s-about__content { max-width: 1240px; }
+/* ===================================================================
+ * Paleta tomada de lldmcentenario.org (tema Aromatica, esquema
+ * "scheme_light"): crema de fondo, tarjetas blancas, filetes arena y
+ * el bronce como único acento. Los titulares van en Syne, que es la
+ * tipografía de los encabezados de aquel sitio; el cuerpo se queda en
+ * Inter, que es lo más parecido a su niveau-grotesk (de Typekit, no
+ * se puede enlazar desde aquí).
+ * ------------------------------------------------------------------- */
+.s-about {
+    --news-bg      : #F4F1E7;   /* alter_bg_color */
+    --news-card    : #ffffff;   /* bg_color       */
+    --news-bd      : #D9D4C2;   /* bd_color       */
+    --news-ink     : #0F121C;   /* text_dark      */
+    --news-text    : #6C6E71;   /* text           */
+    --news-soft    : #919296;   /* text_light     */
+    --news-accent  : #9b824a;   /* text_link      */
+    --news-accent-2: #e4b574;   /* alter_link     */
+    --news-font    : "Syne", var(--font-2);
+
+    background-color : var(--news-bg);
+}
+
+/* El retículo tiene que llenar la sección entera: el contenedor original
+   topaba en 1000px (y en 900/800px en las medias de arriba), lo que dejaba
+   tres columnas estrechísimas. Aquí manda el ancho de la ventana y sólo se
+   pone un techo para que en pantallas muy anchas no se descuelgue la vista
+   de un extremo a otro. */
+.s-about__content {
+    max-width : 1720px;
+    width     : 92%;
+}
+
+@media screen and (min-width: 1900px) {
+    .s-about__content { width: 88%; }
+}
 
 .wp-news {
     margin-top : var(--vspace-1);
     text-align : left;
+    color      : var(--news-text);
 }
 
-.wp-news__grid {
-    display               : grid;
-    grid-template-columns : repeat(auto-fill, minmax(30rem, 1fr));
-    gap                   : var(--vspace-1) 3.2rem;
-    margin                : 0;
-    padding               : 0;
-    list-style            : none;
-}
-
+/* --- piezas comunes a los dos bloques ----------------------------------- */
 .wp-news__card {
     display          : flex;
     flex-direction   : column;
-    background-color : var(--color-white);
-    border           : 1px solid var(--color-gray-9);
-    border-radius    : 1rem;
+    background-color : var(--news-card);
+    border           : 1px solid var(--news-bd);
     overflow         : hidden;
     transition       : transform .25s ease-out, box-shadow .25s ease-out, border-color .25s ease-out;
 }
@@ -5221,15 +5246,15 @@ img.u-pull-left {
 .wp-news__card:hover,
 .wp-news__card:focus-within {
     transform    : translateY(-4px);
-    box-shadow   : 0 1.6rem 3.2rem rgba(0, 0, 0, .10);
-    border-color : var(--color-gray-11);
+    box-shadow   : 0 1.6rem 3.2rem rgba(15, 18, 28, .10);
+    border-color : var(--news-accent-2);
 }
 
 .wp-news__thumb {
     position         : relative;
     display          : block;
     aspect-ratio     : 16 / 10;
-    background-color : var(--color-gray-6);
+    background-color : var(--news-bd);
     overflow         : hidden;
 }
 
@@ -5248,10 +5273,11 @@ img.u-pull-left {
     display         : flex;
     align-items     : center;
     justify-content : center;
-    background      : linear-gradient(135deg, var(--color-2-dark), var(--color-2));
-    color           : var(--color-1);
-    font-family     : var(--font-1);
+    background      : linear-gradient(135deg, var(--news-ink), #2b2f3d);
+    color           : var(--news-accent-2);
+    font-family     : var(--news-font);
     font-size       : 2.4rem;
+    font-weight     : 700;
     letter-spacing  : .3rem;
 }
 
@@ -5264,50 +5290,55 @@ img.u-pull-left {
 
 .wp-news__date {
     font-family    : var(--font-2);
-    font-size      : 1.3rem;
+    font-size      : 1.2rem;
     font-weight    : 600;
     text-transform : uppercase;
     letter-spacing : .2rem;
-    color          : var(--color-1-dark);
-    margin         : 0 0 .8rem;
+    color          : var(--news-accent);
+    margin         : 0 0 1rem;
 }
 
 .wp-news__title {
-    font-family : var(--font-1);
-    font-size   : 2rem;
-    line-height : 1.35;
-    margin      : 0 0 1.2rem;
+    font-family    : var(--news-font);
+    font-weight    : 700;
+    font-size      : 1.9rem;
+    line-height    : 1.35;
+    letter-spacing : -.01em;
+    margin         : 0 0 1.2rem;
 }
 
 .wp-news__title a {
-    color           : var(--color-text);
+    color           : var(--news-ink);
     text-decoration : none;
-    border-bottom   : 1px solid transparent;
-    transition      : color .2s ease-out, border-color .2s ease-out;
+    background-image: linear-gradient(var(--news-accent), var(--news-accent));
+    background-size : 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition      : color .2s ease-out, background-size .3s ease-out;
 }
 
 .wp-news__title a:hover,
 .wp-news__title a:focus {
-    color         : var(--color-2);
-    border-color  : var(--color-2);
+    color           : var(--news-accent);
+    background-size : 100% 1px;
 }
 
 .wp-news__excerpt {
-    font-family : var(--font-1);
+    font-family : var(--font-2);
     font-size   : 1.5rem;
     line-height : 1.7;
-    color       : var(--color-gray-15);
+    color       : var(--news-text);
     margin      : 0 0 2rem;
 }
 
 .wp-news__link {
     margin-top     : auto;
     font-family    : var(--font-2);
-    font-size      : 1.3rem;
+    font-size      : 1.2rem;
     font-weight    : 600;
     text-transform : uppercase;
     letter-spacing : .2rem;
-    color          : var(--color-2);
+    color          : var(--news-accent);
     text-decoration: none;
 }
 
@@ -5320,11 +5351,113 @@ img.u-pull-left {
 
 .wp-news__link:hover::after { margin-left: 1.2rem; }
 
+/* --- bloque 1: una principal y tres laterales ---------------------------
+ * Lo que en WordPress es "1 main post with 3 side posts": la entrada más
+ * reciente manda con la imagen grande y las tres siguientes se apilan al
+ * lado en formato compacto (miniatura cuadrada, sin resumen).
+ * ---------------------------------------------------------------------- */
+.wp-news__lead {
+    display               : grid;
+    grid-template-columns : minmax(0, 1.55fr) minmax(0, 1fr);
+    gap                   : 3.2rem;
+    align-items           : stretch;
+}
+
+.wp-news__lead[hidden] { display: none; }
+
+/* si el sitio sólo tiene una entrada, la principal se queda con todo el ancho */
+.wp-news__lead--solo { grid-template-columns: 1fr; }
+
+.wp-news__lead-side {
+    display       : grid;
+    grid-auto-rows: 1fr;
+    gap           : 2.4rem;
+    min-width     : 0;
+}
+
+/* la principal */
+.wp-news__card--main .wp-news__thumb { aspect-ratio: 16 / 9; }
+
+.wp-news__card--main .wp-news__body { padding: 3.2rem 3.6rem 3.6rem; }
+
+.wp-news__card--main .wp-news__title {
+    font-size   : clamp(2.4rem, 2.4vw, 3.4rem);
+    line-height : 1.18;
+    margin      : 0 0 1.6rem;
+}
+
+.wp-news__card--main .wp-news__excerpt {
+    font-size : 1.7rem;
+    max-width : 62ch;
+}
+
+/* las tres laterales. La miniatura pide ancho: la columna lateral estira las
+   tres tarjetas hasta igualar la altura de la principal, y con una columna
+   estrecha la foto salía recortada en vertical. */
+.wp-news__card--side {
+    display               : grid;
+    grid-template-columns : 19rem minmax(0, 1fr);
+    flex-direction        : row;
+}
+
+.wp-news__card--side .wp-news__thumb {
+    aspect-ratio : auto;
+    height       : 100%;
+    min-height   : 11rem;
+}
+
+.wp-news__card--side .wp-news__thumb--empty { font-size: 1.6rem; }
+
+.wp-news__card--side .wp-news__body {
+    padding         : 1.8rem 2rem;
+    justify-content : center;
+}
+
+.wp-news__card--side .wp-news__title {
+    font-size   : 1.8rem;
+    line-height : 1.3;
+    margin      : 0;
+}
+
+/* --- bloque 2: tres columnas, desplazadas 4 -----------------------------
+ * El "3 column post with 4 offset": el mismo listado saltándose las cuatro
+ * que ya salieron arriba, para que no se repita ninguna.
+ * ---------------------------------------------------------------------- */
+.wp-news__section-title {
+    font-family    : "Cinzel", var(--font-1);
+    font-size      : 2.2rem;
+    font-weight    : 600;
+    letter-spacing : .06em;
+    color          : var(--news-ink);
+    text-align     : center;
+    margin         : var(--vspace-2) 0 var(--vspace-0_5);
+}
+
+.wp-news__section-title[hidden] { display: none; }
+
+.wp-news__section-title::after {
+    content          : "";
+    display          : block;
+    width            : 6rem;
+    height           : 2px;
+    background-color : var(--news-accent-2);
+    margin           : var(--vspace-0_5) auto 0;
+}
+
+.wp-news__grid {
+    display               : grid;
+    grid-template-columns : repeat(3, minmax(0, 1fr));
+    gap                   : 3.2rem;
+    margin                : var(--vspace-1) 0 0;
+    padding               : 0;
+    list-style            : none;
+}
+
 /* --- estados: cargando, error, vacío ------------------------------------ */
 .wp-news__status {
     font-family : var(--font-2);
     font-size   : 1.5rem;
-    color       : var(--color-gray-15);
+    color       : var(--news-soft);
     text-align  : center;
     padding     : var(--vspace-1) 0;
 }
@@ -5337,7 +5470,7 @@ img.u-pull-left {
     font-family     : var(--font-2);
     font-size       : 1.4rem;
     font-weight     : 600;
-    color           : var(--color-2);
+    color           : var(--news-accent);
     background      : none;
     border          : 0;
     border-bottom   : 1px solid currentColor;
@@ -5351,12 +5484,14 @@ img.u-pull-left {
 
 /* esqueletos mientras llega la primera tanda */
 .wp-news__skeleton {
-    border-radius : 1rem;
-    background    : linear-gradient(100deg, var(--color-gray-6) 30%, var(--color-gray-3) 50%, var(--color-gray-6) 70%);
+    background    : linear-gradient(100deg, var(--news-bd) 30%, #ece7d8 50%, var(--news-bd) 70%);
     background-size: 400% 100%;
     animation     : wp-news-shimmer 1.4s ease-in-out infinite;
-    min-height    : 34rem;
+    min-height    : 30rem;
 }
+
+.wp-news__skeleton--main { min-height: 46rem; }
+.wp-news__skeleton--side { min-height: 11rem; }
 
 @keyframes wp-news-shimmer {
     from { background-position: 100% 0; }
@@ -5372,25 +5507,38 @@ img.u-pull-left {
 
 .wp-news__more[hidden] { display: none; }
 
+.wp-news__more.btn--stroke {
+    border-color : var(--news-accent);
+    color        : var(--news-accent);
+    font-family  : var(--news-font);
+}
+
+.wp-news__more.btn--stroke:hover,
+.wp-news__more.btn--stroke:focus {
+    background-color : var(--news-accent);
+    border-color     : var(--news-accent);
+    color            : #ffffff;
+}
+
 .wp-news__foot {
     text-align  : center;
     font-family : var(--font-2);
     font-size   : 1.3rem;
-    color       : var(--color-gray-14);
+    color       : var(--news-soft);
     margin      : var(--vspace-0_5) 0 0;
 }
 
-.wp-news__foot a { color: var(--color-gray-14); }
+.wp-news__foot a { color: var(--news-accent); }
 
 /* aviso de entradas nuevas detectadas sin recargar la página */
 .wp-news__fresh {
     display          : block;
     margin           : 0 auto var(--vspace-0_5);
-    font-family      : var(--font-2);
+    font-family      : var(--news-font);
     font-size        : 1.4rem;
-    font-weight      : 600;
-    color            : var(--color-gray-19);
-    background-color : var(--color-1);
+    font-weight      : 700;
+    color            : #ffffff;
+    background-color : var(--news-accent);
     border           : 0;
     border-radius    : 10rem;
     padding          : 1rem 2.4rem;
@@ -5399,17 +5547,41 @@ img.u-pull-left {
     cursor           : pointer;
     text-transform   : none;
     letter-spacing   : normal;
-    box-shadow       : 0 .6rem 1.6rem rgba(0, 0, 0, .12);
+    box-shadow       : 0 .6rem 1.6rem rgba(15, 18, 28, .12);
 }
 
 .wp-news__fresh[hidden] { display: none; }
 
+/* --- responsive ---------------------------------------------------------- */
+@media screen and (max-width: 1400px) {
+    .wp-news__lead { gap: 2.4rem; }
+    .wp-news__grid { gap: 2.4rem; }
+    .wp-news__card--side { grid-template-columns: 15rem minmax(0, 1fr); }
+    .wp-news__card--side .wp-news__title { font-size: 1.6rem; }
+}
+
+/* por debajo de esto la principal y las laterales ya no caben lado a lado */
+@media screen and (max-width: 1100px) {
+    .wp-news__lead { grid-template-columns: 1fr; }
+    .wp-news__lead-side { grid-auto-rows: auto; }
+    .wp-news__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .s-about__content { width: 92%; max-width: none; }
+}
+
 @media screen and (max-width: 800px) {
     .wp-news__grid { grid-template-columns: 1fr; }
+    .wp-news__card--main .wp-news__body { padding: 2.4rem 2.4rem 2.8rem; }
+}
+
+@media screen and (max-width: 520px) {
+    .wp-news__card--side { grid-template-columns: 1fr; }
+    .wp-news__card--side .wp-news__thumb { aspect-ratio: 16 / 10; height: auto; }
+    .wp-news__card--side .wp-news__body { padding: 2rem 2.2rem 2.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .wp-news__card,
+    .wp-news__title a,
     .wp-news__thumb img,
     .wp-news__skeleton { transition: none; animation: none; }
 }
@@ -5650,6 +5822,13 @@ comunión con Cristo.</h1>
                                 Hay publicaciones nuevas — actualizar
                             </button>
 
+                            <!-- bloque 1: una principal y tres laterales -->
+                            <div class="wp-news__lead" id="wp-news-lead"></div>
+
+                            <!-- bloque 2: tres columnas, saltándose las cuatro de arriba -->
+                            <h3 class="wp-news__section-title" id="wp-news-grid-title" hidden>
+                                Más noticias
+                            </h3>
                             <div class="wp-news__grid" id="wp-news-grid"></div>
 
                             <p class="wp-news__status" id="wp-news-status" role="status" aria-live="polite">
@@ -6420,6 +6599,14 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
     Lee las entradas publicadas en santaconvocacionlldm.org por la API REST de
     WordPress y las pinta en la sección #about. No hay nada que regenerar ni
     volver a subir: en cuanto una entrada se publica allá, aparece aquí.
+
+    Dos bloques, los mismos que usa lldmcentenario.org:
+
+      1. "1 main post with 3 side posts" — las cuatro más recientes: la
+         primera con la imagen grande y las tres siguientes apiladas al lado.
+      2. "3 column posts with 4 offset" — el resto del listado en tres
+         columnas, desplazado 4 para no repetir las de arriba. El desplazamiento
+         es el parámetro `offset` de la propia API, igual que en WordPress.
     ================================================== -->
     <script>
     (function () {
@@ -6427,27 +6614,32 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         /* --- configuración --------------------------------------------------
          * categoria : 11 = "Santa Convocación". Pon null para traer todas.
-         * porPagina : cuántas tarjetas por tanda.
+         * destacadas: cuántas van al bloque de arriba (1 principal + 3 al lado).
+         *             Es también el `offset` del retículo de tres columnas.
+         * porPagina : cuántas tarjetas trae cada tanda del retículo.
          * refrescoMs: cada cuánto se comprueba si hay entradas nuevas.
          * ------------------------------------------------------------------- */
         var CFG = {
             sitio      : 'https://santaconvocacionlldm.org',
             categoria  : 11,
-            porPagina  : 9,
+            destacadas : 4,
+            porPagina  : 6,
             refrescoMs : 5 * 60 * 1000
         };
 
-        var grid   = document.getElementById('wp-news-grid');
-        var status = document.getElementById('wp-news-status');
-        var more   = document.getElementById('wp-news-more');
-        var fresh  = document.getElementById('wp-news-fresh');
-        var foot   = document.getElementById('wp-news-foot');
+        var lead       = document.getElementById('wp-news-lead');
+        var grid       = document.getElementById('wp-news-grid');
+        var gridTitulo = document.getElementById('wp-news-grid-title');
+        var status     = document.getElementById('wp-news-status');
+        var more       = document.getElementById('wp-news-more');
+        var fresh      = document.getElementById('wp-news-fresh');
+        var foot       = document.getElementById('wp-news-foot');
 
-        if (!grid) { return; }
+        if (!lead || !grid) { return; }
 
         var state = {
-            pagina       : 0,     // última página pintada
-            totalPaginas : 1,
+            enRejilla    : 0,     // cuántas hay pintadas en las tres columnas
+            enDestacadas : 0,
             total        : 0,
             masReciente  : null,  // id de la entrada más nueva conocida
             cargando     : false,
@@ -6495,10 +6687,12 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             };
         }
 
-        function url(pagina, porPagina) {
+        /* La API acepta `offset` en vez de `page`, y es lo que necesita el
+         * segundo bloque: siempre pide desde la quinta entrada en adelante. */
+        function url(desde, cuantas) {
             var q = [
-                'per_page=' + (porPagina || CFG.porPagina),
-                'page=' + pagina,
+                'per_page=' + cuantas,
+                'offset=' + desde,
                 'orderby=date',
                 'order=desc',
                 '_embed=wp:featuredmedia',
@@ -6508,15 +6702,14 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             return CFG.sitio + '/wp-json/wp/v2/posts?' + q.join('&');
         }
 
-        function traer(pagina, porPagina) {
-            return fetch(url(pagina, porPagina), { credentials: 'omit' })
+        function traer(desde, cuantas) {
+            return fetch(url(desde, cuantas), { credentials: 'omit' })
                 .then(function (r) {
                     if (!r.ok) { throw new Error('HTTP ' + r.status); }
                     return r.json().then(function (datos) {
                         return {
-                            posts    : datos,
-                            total    : parseInt(r.headers.get('X-WP-Total'), 10) || datos.length,
-                            paginas  : parseInt(r.headers.get('X-WP-TotalPages'), 10) || 1
+                            posts : datos,
+                            total : parseInt(r.headers.get('X-WP-Total'), 10) || datos.length
                         };
                     });
                 });
@@ -6524,20 +6717,16 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         /* --- pintado -------------------------------------------------------- */
 
-        function tarjeta(post) {
-            var art = document.createElement('article');
-            art.className = 'wp-news__card';
-
-            var titulo  = aTexto(post.title && post.title.rendered) || 'Sin título';
-            var resumen = recortar(aTexto(post.excerpt && post.excerpt.rendered), 160);
-            var img     = imagen(post);
-
+        function miniatura(post, oculta) {
             var enlace = document.createElement('a');
             enlace.className = 'wp-news__thumb';
             enlace.href = post.link;
-            enlace.setAttribute('aria-hidden', 'true');
-            enlace.setAttribute('tabindex', '-1');
+            if (oculta) {
+                enlace.setAttribute('aria-hidden', 'true');
+                enlace.setAttribute('tabindex', '-1');
+            }
 
+            var img = imagen(post);
             if (img && img.src) {
                 var el = document.createElement('img');
                 el.src = img.src;
@@ -6549,6 +6738,20 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 enlace.className += ' wp-news__thumb--empty';
                 enlace.textContent = 'LLDM';
             }
+            return enlace;
+        }
+
+        /* variante: 'main' (la grande), 'side' (las tres de al lado, sin
+         * resumen, como en el original) o 'grid' (las tres columnas). */
+        function tarjeta(post, variante) {
+            var art = document.createElement('article');
+            art.className = 'wp-news__card wp-news__card--' + variante;
+
+            var titulo = aTexto(post.title && post.title.rendered) || 'Sin título';
+            var conResumen = variante !== 'side';
+            var resumen = conResumen
+                ? recortar(aTexto(post.excerpt && post.excerpt.rendered), variante === 'main' ? 260 : 150)
+                : '';
 
             var cuerpo = document.createElement('div');
             cuerpo.className = 'wp-news__body';
@@ -6557,46 +6760,94 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             f.className = 'wp-news__date';
             f.textContent = fecha(post.date);
 
-            var h = document.createElement('h3');
+            var h = document.createElement(variante === 'main' ? 'h3' : 'h4');
             h.className = 'wp-news__title';
             var ha = document.createElement('a');
             ha.href = post.link;
             ha.textContent = titulo;
             h.appendChild(ha);
 
-            var p = document.createElement('p');
-            p.className = 'wp-news__excerpt';
-            p.textContent = resumen;
-
-            var leer = document.createElement('a');
-            leer.className = 'wp-news__link';
-            leer.href = post.link;
-            leer.textContent = 'Leer publicación';
-            leer.setAttribute('aria-label', 'Leer publicación: ' + titulo);
-
             cuerpo.appendChild(f);
             cuerpo.appendChild(h);
-            if (resumen) { cuerpo.appendChild(p); }
-            cuerpo.appendChild(leer);
 
-            art.appendChild(enlace);
+            if (resumen) {
+                var p = document.createElement('p');
+                p.className = 'wp-news__excerpt';
+                p.textContent = resumen;
+                cuerpo.appendChild(p);
+            }
+
+            if (conResumen) {
+                var leer = document.createElement('a');
+                leer.className = 'wp-news__link';
+                leer.href = post.link;
+                leer.textContent = 'Leer publicación';
+                leer.setAttribute('aria-label', 'Leer publicación: ' + titulo);
+                cuerpo.appendChild(leer);
+            }
+
+            art.appendChild(miniatura(post, true));
             art.appendChild(cuerpo);
             return art;
         }
 
-        function esqueletos(n) {
+        // bloque 1: la primera manda, las tres siguientes se apilan al lado
+        function pintarDestacadas(posts) {
+            lead.innerHTML = '';
+            lead.hidden = !posts.length;
+            state.enDestacadas = posts.length;
+            if (!posts.length) { return; }
+
+            lead.appendChild(tarjeta(posts[0], 'main'));
+
+            var laterales = posts.slice(1, CFG.destacadas);
+            lead.classList.toggle('wp-news__lead--solo', !laterales.length);
+            if (!laterales.length) { return; }
+
+            var col = document.createElement('div');
+            col.className = 'wp-news__lead-side';
+            laterales.forEach(function (post) { col.appendChild(tarjeta(post, 'side')); });
+            lead.appendChild(col);
+        }
+
+        // bloque 2: tres columnas con el resto
+        function pintarRejilla(posts, anexar) {
+            if (!anexar) { grid.innerHTML = ''; state.enRejilla = 0; }
             var frag = document.createDocumentFragment();
-            for (var i = 0; i < n; i++) {
+            posts.forEach(function (post) { frag.appendChild(tarjeta(post, 'grid')); });
+            grid.appendChild(frag);
+            state.enRejilla += posts.length;
+            gridTitulo.hidden = !state.enRejilla;
+        }
+
+        function esqueletos() {
+            var main = document.createElement('div');
+            main.className = 'wp-news__skeleton wp-news__skeleton--main';
+            var col = document.createElement('div');
+            col.className = 'wp-news__lead-side';
+            for (var i = 0; i < CFG.destacadas - 1; i++) {
                 var s = document.createElement('div');
-                s.className = 'wp-news__skeleton';
-                frag.appendChild(s);
+                s.className = 'wp-news__skeleton wp-news__skeleton--side';
+                col.appendChild(s);
+            }
+            lead.hidden = false;
+            lead.appendChild(main);
+            lead.appendChild(col);
+
+            var frag = document.createDocumentFragment();
+            for (var j = 0; j < CFG.porPagina; j++) {
+                var g = document.createElement('div');
+                g.className = 'wp-news__skeleton';
+                frag.appendChild(g);
             }
             grid.appendChild(frag);
         }
 
         function limpiarEsqueletos() {
-            var s = grid.querySelectorAll('.wp-news__skeleton');
+            var s = document.querySelectorAll('.wp-news__skeleton');
             for (var i = 0; i < s.length; i++) { s[i].parentNode.removeChild(s[i]); }
+            var vacia = lead.querySelector('.wp-news__lead-side:empty');
+            if (vacia) { vacia.parentNode.removeChild(vacia); }
         }
 
         function mensaje(texto, esError, conReintento) {
@@ -6608,62 +6859,94 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 b.type = 'button';
                 b.className = 'wp-news__retry';
                 b.textContent = 'Reintentar';
-                b.addEventListener('click', function () { cargar(state.pagina + 1, true); });
+                b.addEventListener('click', function () {
+                    if (state.enDestacadas) { cargarMas(); } else { cargar(); }
+                });
                 status.appendChild(b);
             }
         }
 
+        function mostradas() {
+            return state.enDestacadas + state.enRejilla;
+        }
+
         function pie() {
             if (!state.total) { foot.textContent = ''; return; }
-            var mostradas = grid.querySelectorAll('.wp-news__card').length;
-            foot.textContent = 'Mostrando ' + mostradas + ' de ' + state.total + ' publicaciones · ';
+            foot.textContent = 'Mostrando ' + mostradas() + ' de ' + state.total + ' publicaciones · ';
             var a = document.createElement('a');
             a.href = CFG.sitio;
             a.textContent = 'ver el sitio completo';
             foot.appendChild(a);
         }
 
+        function repasarBotonMas() {
+            more.hidden = mostradas() >= state.total;
+        }
+
         /* --- carga ----------------------------------------------------------- */
 
-        function cargar(pagina, anexar) {
+        // primera pasada: una sola petición trae las destacadas y la primera
+        // tanda del retículo, y de ahí se reparten.
+        function cargar() {
             if (state.cargando) { return; }
             state.cargando = true;
             more.disabled = true;
 
-            if (!anexar) { grid.innerHTML = ''; }
-            if (!grid.querySelector('.wp-news__card')) { esqueletos(CFG.porPagina); }
-            mensaje(anexar ? 'Cargando más…' : 'Cargando publicaciones…');
+            lead.innerHTML = '';
+            grid.innerHTML = '';
+            state.enRejilla = 0;
+            state.enDestacadas = 0;
+            esqueletos();
+            mensaje('Cargando publicaciones…');
 
-            traer(pagina).then(function (res) {
+            traer(0, CFG.destacadas + CFG.porPagina).then(function (res) {
                 limpiarEsqueletos();
-                state.pagina       = pagina;
-                state.total        = res.total;
-                state.totalPaginas = res.paginas;
+                state.total = res.total;
                 state.ultimaMirada = Date.now();
 
-                if (!res.posts.length && pagina === 1) {
+                if (!res.posts.length) {
+                    lead.hidden = true;
+                    gridTitulo.hidden = true;
                     mensaje('Todavía no hay publicaciones.');
                     more.hidden = true;
+                    foot.textContent = '';
                     return;
                 }
 
-                if (res.posts[0]) { state.masReciente = res.posts[0].id; }
+                state.masReciente = res.posts[0].id;
 
-                var frag = document.createDocumentFragment();
-                res.posts.forEach(function (post) { frag.appendChild(tarjeta(post)); });
-                grid.appendChild(frag);
+                pintarDestacadas(res.posts.slice(0, CFG.destacadas));
+                pintarRejilla(res.posts.slice(CFG.destacadas), false);
 
                 mensaje('');
-                more.hidden = pagina >= state.totalPaginas;
+                repasarBotonMas();
                 fresh.hidden = true;
                 pie();
             }).catch(function (err) {
                 limpiarEsqueletos();
-                if (!grid.querySelector('.wp-news__card')) {
-                    mensaje('No se pudieron cargar las publicaciones (' + err.message + ').', true, true);
-                } else {
-                    mensaje('No se pudieron cargar más publicaciones.', true, true);
-                }
+                lead.hidden = !state.enDestacadas;
+                mensaje('No se pudieron cargar las publicaciones (' + err.message + ').', true, true);
+            }).then(function () {
+                state.cargando = false;
+                more.disabled = false;
+            });
+        }
+
+        // siguientes tandas: sólo el retículo, desplazado por lo ya pintado
+        function cargarMas() {
+            if (state.cargando) { return; }
+            state.cargando = true;
+            more.disabled = true;
+            mensaje('Cargando más…');
+
+            traer(CFG.destacadas + state.enRejilla, CFG.porPagina).then(function (res) {
+                state.total = res.total;
+                pintarRejilla(res.posts, true);
+                mensaje('');
+                repasarBotonMas();
+                pie();
+            }).catch(function () {
+                mensaje('No se pudieron cargar más publicaciones.', true, true);
             }).then(function () {
                 state.cargando = false;
                 more.disabled = false;
@@ -6679,14 +6962,18 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             if (state.cargando || document.hidden || !state.masReciente) { return; }
             state.ultimaMirada = Date.now();
 
-            traer(1, 1).then(function (res) {
+            traer(0, 1).then(function (res) {
                 var nuevo = res.posts[0];
                 if (!nuevo || nuevo.id === state.masReciente) {
-                    if (res.total !== state.total) { state.total = res.total; pie(); }
+                    if (res.total !== state.total) {
+                        state.total = res.total;
+                        repasarBotonMas();
+                        pie();
+                    }
                     return;
                 }
-                if (state.pagina <= 1) {
-                    cargar(1, false);           // aún en la primera tanda: recarga limpia
+                if (state.enRejilla <= CFG.porPagina) {
+                    cargar();                   // aún en la primera tanda: recarga limpia
                 } else {
                     fresh.hidden = false;       // ya navegó: que decida él
                 }
@@ -6695,11 +6982,11 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         /* --- arranque -------------------------------------------------------- */
 
-        more.addEventListener('click', function () { cargar(state.pagina + 1, true); });
+        more.addEventListener('click', cargarMas);
 
         fresh.addEventListener('click', function () {
             fresh.hidden = true;
-            cargar(1, false);
+            cargar();
             document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
@@ -6711,7 +6998,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
         });
         window.addEventListener('online', mirarNovedades);
 
-        cargar(1, false);
+        cargar();
     })();
     </script>
 
