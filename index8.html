@@ -6,7 +6,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Holy Supper 2026 | LLDM</title>
+    <title>Santa Convocacion 2026 | LLDM </title>
 
     <script>
         document.documentElement.classList.remove('no-js');
@@ -5055,21 +5055,6 @@ img.u-pull-left {
     }
 }
 
-/* La galería expone su tipografía como custom property justo para esto. */
-#gallery .hsig {
-    --hsig-title-font : "Cinzel", var(--font-1);
-}
-
-/* El padding inferior de .s-about (var(--vspace-6), 192px) estaba dimensionado
-   para que la sección respirara antes del pie oscuro. Ahora entre medias va la
-   galería, que trae sus propios 56px, así que quedaban 248px de blanco entre
-   "Showing 9 of 96 posts" y la primera fila de fotos. Se recorta aquí, junto a
-   lo demás que toca la galería, para que quitar esa sección devuelva el
-   espaciado original sin tener que buscar la regla en otro sitio. */
-#about.s-about {
-    padding-bottom : var(--vspace-2);
-}
-
 .s-about__content {
     max-width  : 1000px;
     text-align : center;
@@ -5171,9 +5156,9 @@ img.u-pull-left {
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://holysupper.org/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://holysupper.org/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://holysupper.org/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://santaconvocacionlldm.org/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://santaconvocacionlldm.org/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://santaconvocacionlldm.org/images/favicon-16x16.png">
 
 
 <!-- noticias dinámicas: estilos
@@ -5181,7 +5166,7 @@ img.u-pull-left {
 <style>
 /* ===================================================================
  * Feed de noticias — se alimenta de la API REST de WordPress de
- * holysupper.org. Ver el bloque de JavaScript al final del
+ * santaconvocacionlldm.org. Ver el bloque de JavaScript al final del
  * documento (buscar "NOTICIAS DINÁMICAS") para la configuración.
  * ------------------------------------------------------------------- */
 
@@ -5607,8 +5592,8 @@ img.u-pull-left {
 ================================================== -->
 <style>
 /* ===================================================================
- * Variante "video protagonista" de index5Eng: el hueco del video manda
- * en el hero y el titular cede sitio. Gemela de index6.html.
+ * Variante "video protagonista" de index5: el hueco del video manda en
+ * el hero y el titular cede sitio.
  *
  * En lugar del video va, de momento, el cartel de la Santa Cena 2026.
  * Ocupa exactamente el mismo hueco (16:9, centrado), así que para poner
@@ -5682,6 +5667,206 @@ img.u-pull-left {
 }
 </style>
 
+
+<!-- VIDEOS: estilos
+================================================== -->
+<style>
+/* ===================================================================
+ * VIDEOS — sección propia, debajo de las noticias.
+ *
+ * Va la última del documento a propósito: las medias de la hoja de
+ * StyleShout no añaden especificidad, así que lo que decide es el orden
+ * (la misma razón por la que .s-about__content puede ensancharse).
+ *
+ * Reparte la paleta de .s-about pero invirtiendo el fondo: allí el suelo
+ * es crema y las tarjetas blancas, aquí al revés. Es lo que separa las dos
+ * secciones de un vistazo sin meter un color nuevo.
+ *
+ * Las variables se repiten en vez de subirlas a :root porque están
+ * declaradas dentro de .s-about y sacarlas de ahí tocaría la sección de
+ * noticias, que funciona.
+ * ------------------------------------------------------------------- */
+.s-videos {
+    --news-bg      : #ffffff;
+    --news-card    : #F4F1E7;
+    --news-bd      : #D9D4C2;
+    --news-ink     : #0F121C;
+    --news-text    : #6C6E71;
+    --news-soft    : #919296;
+    --news-accent  : #9b824a;
+    --news-accent-2: #e4b574;
+    --news-font    : "Syne", var(--font-2);
+
+    background-color : var(--news-bg);
+    padding-top      : var(--vspace-3);
+    padding-bottom   : var(--vspace-3);
+}
+
+.s-videos__content {
+    max-width : 1720px;
+    width     : 92%;
+}
+
+@media screen and (min-width: 1900px) {
+    .s-videos__content { width: 88%; }
+}
+
+.s-videos .text-pretitle {
+    font-family    : var(--news-font);
+    color          : var(--news-accent);
+    letter-spacing : .06em;
+}
+
+.wp-videos {
+    margin-top : var(--vspace-1);
+    text-align : left;
+    color      : var(--news-text);
+}
+
+/* Las tarjetas son las mismas piezas que las noticias (.wp-news__card y
+   compañía siguen aplicando), así que aquí sólo va lo propio del video:
+   el retículo, la chapa de reproducir y la duración del hueco. */
+.wp-videos__grid {
+    display               : grid;
+    grid-template-columns : repeat(4, minmax(0, 1fr));
+    gap                   : 3.2rem;
+    margin                : 0;
+    padding               : 0;
+    list-style            : none;
+}
+
+/* 16:9 y no el 16:10 de las noticias porque es exactamente la forma en que
+   Facebook entrega estos fotogramas (1280x720, comprobado en la API): con
+   cualquier otra proporción object-fit:cover recorta, y varios de estos
+   fotogramas ya traen sus propias bandas negras de un reel vertical, así que
+   el recorte se comería la imagen de verdad. */
+.wp-videos .wp-news__thumb { aspect-ratio: 16 / 9; }
+
+/* La chapa de reproducir. Va sobre el enlace de la miniatura, que ya es
+   position:relative, y no intercepta el clic (pointer-events:none) para que
+   toda la miniatura siga siendo un solo objetivo. */
+.wp-videos__play {
+    position       : absolute;
+    top            : 50%;
+    left           : 50%;
+    transform      : translate(-50%, -50%);
+    width          : 6.4rem;
+    height         : 6.4rem;
+    border-radius  : 50%;
+    background     : rgba(15, 18, 28, .55);
+    border         : 2px solid rgba(255, 255, 255, .9);
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    pointer-events : none;
+    transition     : background-color .25s ease-out, transform .25s ease-out;
+}
+
+.wp-videos__play::before {
+    content      : "";
+    display      : block;
+    width        : 0;
+    height       : 0;
+    margin-left  : .6rem;              /* centra el triángulo en el círculo */
+    border-left  : 1.8rem solid #ffffff;
+    border-top   : 1.1rem solid transparent;
+    border-bottom: 1.1rem solid transparent;
+}
+
+.wp-news__card:hover .wp-videos__play,
+.wp-news__card:focus-within .wp-videos__play {
+    background : var(--news-accent);
+    transform  : translate(-50%, -50%) scale(1.08);
+}
+
+/* El fondo de esta sección es blanco, así que las tarjetas necesitan su
+   propio color: .wp-news__card lo toma de --news-card, que aquí ya está
+   invertido, pero el marcador de "sin imagen" lleva su degradado propio. */
+.wp-videos .wp-news__thumb--empty {
+    background : linear-gradient(135deg, var(--news-ink), #2b2f3d);
+}
+
+.wp-videos__status {
+    margin-top : var(--vspace-1);
+    font-size  : 1.5rem;
+    color      : var(--news-soft);
+}
+
+.wp-videos__status[hidden] { display: none; }
+.wp-videos__status--error  { color: var(--color-error-content); }
+
+.wp-videos__retry {
+    margin-left    : 1.2rem;
+    padding        : .4rem 1.6rem;
+    font-size      : 1.3rem;
+    line-height    : 2.4rem;
+    height         : auto;
+    margin-bottom  : 0;
+    letter-spacing : .02em;
+    background     : transparent;
+    border         : 1px solid var(--news-bd);
+    color          : var(--news-accent);
+}
+
+.wp-videos__skeleton {
+    min-height       : 26rem;
+    background-color : var(--news-card);
+    border           : 1px solid var(--news-bd);
+    animation        : wp-news-shimmer 1.4s ease-in-out infinite;
+}
+
+.wp-videos__actions {
+    margin-top : var(--vspace-1);
+    text-align : center;
+}
+
+.wp-videos__more[hidden] { display: none; }
+
+/* StyleShout tiene una regla global para `button` (padding lateral de 36px,
+   margen inferior y letter-spacing) que alcanza a estos botones igual que
+   alcanzaba a los de la galería. Se reafirma lo que hace falta en vez de
+   confiar en que no llegue. */
+.wp-videos__more.btn--stroke {
+    margin-bottom : 0;
+    border-color  : var(--news-accent);
+    color         : var(--news-accent);
+}
+
+.wp-videos__more.btn--stroke:hover,
+.wp-videos__more.btn--stroke:focus {
+    background-color : var(--news-accent);
+    border-color     : var(--news-accent);
+    color            : #ffffff;
+}
+
+.wp-videos__foot {
+    margin-top : 1.6rem;
+    font-size  : 1.4rem;
+    color      : var(--news-soft);
+    text-align : center;
+}
+
+.wp-videos__foot a { color: var(--news-accent); }
+
+@media screen and (max-width: 1400px) {
+    .wp-videos__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; }
+}
+
+@media screen and (max-width: 1000px) {
+    .wp-videos__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media screen and (max-width: 600px) {
+    .wp-videos__grid { grid-template-columns: 1fr; }
+    .wp-videos__play { width: 5.6rem; height: 5.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wp-videos__play,
+    .wp-videos__skeleton { transition: none; animation: none; }
+}
+</style>
+
 </head>
 
 
@@ -5719,16 +5904,16 @@ img.u-pull-left {
             <nav class="s-header__nav">
 
                 <a href="#0" class="s-header__nav-close-btn" title="close"><span>Close</span></a>
-                <h3>Holy Supper</h3>
+                <h3>Santa Convocación</h3>
 
                 <ul class="s-header__nav-list">
-                    <li><a href="#intro" class="smoothscroll">News</a></li>
-                    <li><a href="#about" class="smoothscroll">Welcoming Ceremony 2026</a></li>
-                    <li><a href="#gallery" class="smoothscroll">Instagram</a></li>
-                    <li><a href="#" class="smoothscroll">Baptismal Ceremony 2026</a></li>
-                    <li><a href="#" class="smoothscroll">Holy Supper Ceremony 2026</a></li>
-					<li><a href="https://santaconvocacionlldm.org">Sitio en Espanol</a></li>
-                                    </ul>
+                    <li><a href="#about" class="smoothscroll">Noticias</a></li>
+                    <li><a href="#videos" class="smoothscroll">Videos</a></li>
+                    <li><a href="#about" class="smoothscroll">Bienvenida 2026</a></li>
+                    <li><a href="#" class="smoothscroll">Ceremonia de Bautismos 2026</a></li>
+                    <li><a href="#" class="smoothscroll">Ceremonia de Santa Cena 2026</a></li>
+					<li><a href="https://holysupper.org">English Site</a></li>
+				</ul>
 
                 <p>
                 
@@ -5736,19 +5921,19 @@ img.u-pull-left {
 
                 <ul class="s-header__social">
                     <li>
-                        <a href="https://www.facebook.com/holysupper">
+                        <a href="https://www.facebook.com/SantaConvocacionLLDM">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path></svg>
                             <span class="u-screen-reader-text">Facebook</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://x.com/HolySupperTLOTW">
+                        <a href="https://x.com/convocacionlldm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"></path></svg>
                             <span class="u-screen-reader-text">X</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/holysuppertlotw/">
+                        <a href="https://www.instagram.com/santaconvocacionlldm/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>
                             <span class="u-screen-reader-text">Instagram</span>
                         </a>
@@ -5774,17 +5959,21 @@ img.u-pull-left {
                 <div class="row s-intro__content">
 
                     <div class="column lg-12 s-intro__content-inner">
-                        <h3 class="s-intro__pretitle">HOLY SUPPER</h3>
+                        <h3 class="s-intro__pretitle">SANTA CONVOCACIÓN</h3>
                         <h1 class="s-intro__title">
-                        A call to<br>
-communion with Christ.</h1>
+                        Un llamado a la<br>
+comunión con Cristo.</h1>
 						
 
                         <div class="s-intro__more">
 							<div class="video-hueco" id="video-hueco">
-								<img src="images/holysupper2026.jpg"
-								     alt="Holy Supper 2026 — The Light of the World Church. Holiness which unites us to our Lord."
-								     width="1280" height="720">
+								<div class="lite-yt" id="lite-yt-dFsz_FwkPlI" style="position:relative;width:1280px;max-width:100%;aspect-ratio:16/9;cursor:pointer;background:#000 url('https://img.youtube.com/vi/dFsz_FwkPlI/hqdefault.jpg') center/cover no-repeat;border-radius:8px;overflow:hidden;" onclick="
+							this.innerHTML = '<iframe width=&quot;560&quot; height=&quot;315&quot; style=&quot;width:100%;height:100%;position:absolute;top:0;left:0;&quot; src=&quot;https://www.youtube.com/embed/dFsz_FwkPlI?autoplay=1&amp;si=v5bQKxrBKOPZtl6W&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen></iframe>';
+						">
+							<svg viewBox="0 0 68 48" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;">
+								<path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,0.13,34,0,34,0S12.21,0.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+								<path d="M 45,24 27,14 27,34" fill="#fff"></path>
+							</svg>
 							</div>
                             <br>
                         </div>	
@@ -5794,19 +5983,19 @@ communion with Christ.</h1>
 
                 <ul class="s-intro__social">
                     <li>
-                        <a href="https://www.facebook.com/holysupper">
+                        <a href="https://www.facebook.com/SantaConvocacionLLDM">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path></svg>
                             <span class="u-screen-reader-text">Facebook</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://x.com/HolySupperTLOTW">
+                        <a href="https://x.com/convocacionlldm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"></path></svg>
                             <span class="u-screen-reader-text">X</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/holysuppertlotw/">
+                        <a href="https://www.instagram.com/santaconvocacionlldm/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>
                             <span class="u-screen-reader-text">Instagram</span>
                         </a>
@@ -5815,7 +6004,7 @@ communion with Christ.</h1>
 
                 <div class="s-intro__scroll">
                     <a href="#about" class="smoothscroll">
-                        <span>Latest News</span>
+                        <span>Útlimas Noticias</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: rotate(180deg);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
                     </a>
                 </div> <!-- s-intro__scroll -->
@@ -5829,11 +6018,11 @@ communion with Christ.</h1>
 
                 <div class="row s-about__content" data-animate-block>
                     <div class="column lg-12">
-                        <h2 class="text-pretitle" data-animate-el>News - Holy Supper 2026</h2>
+                        <h2 class="text-pretitle" data-animate-el>Noticias - Santa Convocación 2026</h2>
                         <div class="wp-news" id="wp-news">
 
                             <button type="button" class="wp-news__fresh" id="wp-news-fresh" hidden>
-                                New posts available — refresh
+                                Hay publicaciones nuevas — actualizar
                             </button>
 
                             <!-- bloque 1: una principal y tres laterales -->
@@ -5841,17 +6030,17 @@ communion with Christ.</h1>
 
                             <!-- bloque 2: tres columnas, saltándose las cuatro de arriba -->
                             <h3 class="wp-news__section-title" id="wp-news-grid-title" hidden>
-                                More news
+                                Más noticias
                             </h3>
                             <div class="wp-news__grid" id="wp-news-grid"></div>
 
                             <p class="wp-news__status" id="wp-news-status" role="status" aria-live="polite">
-                                Loading posts&hellip;
+                                Cargando publicaciones&hellip;
                             </p>
 
                             <div class="wp-news__actions">
                                 <button type="button" class="btn btn--stroke wp-news__more" id="wp-news-more" hidden>
-                                    See more posts
+                                    Ver más publicaciones
                                 </button>
                             </div>
 
@@ -5863,393 +6052,34 @@ communion with Christ.</h1>
 
             </section> <!-- end about -->
 
-            <!-- instagram gallery
+            <!-- videos
             ----------------------------------------------- -->
-            <section id="gallery" class="s-gallery target-section">
+            <section id="videos" class="s-videos target-section">
 
-            <!-- Kept verbatim from lldm-fb-sync/gallery/holysupper-ig-gallery.html
-                 apart from the absolute data-endpoint, so the two stay
-                 diffable. It reads holysupper.org's own Media Library, which
-                 the hourly sync-ig-gallery cron stocks from @holysuppertlotw,
-                 and stays hidden if that feed is empty or unreachable. -->
-            <section class="hsig"
-                     data-endpoint="https://holysupper.org/wp-json/wp/v2/media"
-                     data-marker="igfeed"
-                     data-count="12"
-                     data-profile="https://www.instagram.com/holysuppertlotw/"
-                     data-heading="Follow us on Instagram"
-                     data-cta="View on Instagram"
-                     hidden>
+                <div class="row s-videos__content" data-animate-block>
+                    <div class="column lg-12">
+                        <h2 class="text-pretitle" data-animate-el>Videos - Santa Convocación 2026</h2>
+                        <div class="wp-videos" id="wp-videos">
 
-              <div class="hsig-inner">
-                <header class="hsig-head">
-                  <h2 class="hsig-title"></h2>
-                  <a class="hsig-handle" target="_blank" rel="noopener"></a>
-                </header>
+                            <div class="wp-videos__grid" id="wp-videos-grid"></div>
 
-                <ul class="hsig-grid" role="list"></ul>
-              </div>
+                            <p class="wp-videos__status" id="wp-videos-status" role="status" aria-live="polite">
+                                Cargando videos&hellip;
+                            </p>
 
-              <!-- Lightbox. Kept in the DOM (not built on demand) so the markup is
-                   reviewable in Elementor and so opening a tile costs no layout work. -->
-              <div class="hsig-lb" role="dialog" aria-modal="true" aria-label="Instagram post" hidden>
-                <button class="hsig-lb-close" type="button" aria-label="Close">&times;</button>
-                <button class="hsig-lb-nav hsig-lb-prev" type="button" aria-label="Previous">&#8249;</button>
-                <button class="hsig-lb-nav hsig-lb-next" type="button" aria-label="Next">&#8250;</button>
-                <figure class="hsig-lb-fig">
-                  <img class="hsig-lb-img" alt="">
-                  <figcaption class="hsig-lb-cap">
-                    <p class="hsig-lb-text"></p>
-                    <a class="hsig-lb-link" target="_blank" rel="noopener"></a>
-                  </figcaption>
-                </figure>
-              </div>
-            </section>
+                            <div class="wp-videos__actions">
+                                <button type="button" class="btn btn--stroke wp-videos__more" id="wp-videos-more" hidden>
+                                    Ver más videos
+                                </button>
+                            </div>
 
-            <style>
-            .hsig{--hsig-gap:10px;--hsig-cols:4;--hsig-fg:#1a1a1a;--hsig-muted:#6b6b6b;--hsig-accent:#b8860b;
-              /* Override to give the heading a display face — holysupper.org uses Cinzel.
-                 `inherit` here means the page's own font, not the theme's h2 font, which
-                 is what an unstyled .hsig-title would otherwise pick up. */
-              --hsig-title-font:inherit;
-              display:block;padding:56px 0;color:var(--hsig-fg);
-              font-family:inherit;-webkit-font-smoothing:antialiased}
-            .hsig[hidden]{display:none}
-            .hsig-inner{max-width:1180px;margin:0 auto;padding:0 20px;box-sizing:border-box}
+                            <p class="wp-videos__foot" id="wp-videos-foot"></p>
 
-            .hsig-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
-              gap:8px;margin:0 0 24px}
-            .hsig-title{margin:0;font-family:var(--hsig-title-font);font-size:30px;line-height:1.2;
-              font-weight:600;letter-spacing:.01em}
-            .hsig-handle{font-size:15px;color:var(--hsig-accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
-            .hsig-handle:hover,.hsig-handle:focus-visible{border-bottom-color:currentColor}
+                        </div> <!-- end wp-videos -->
+                    </div> <!-- end column  -->
+                </div> <!-- end s-videos__content  -->
 
-            .hsig-grid{display:grid;grid-template-columns:repeat(var(--hsig-cols),1fr);gap:var(--hsig-gap);
-              margin:0;padding:0;list-style:none}
-            .hsig-cell{position:relative;margin:0;padding:0}
-
-            /* Square tiles without depending on aspect-ratio support: the padding box
-               gives the height, the image is absolutely positioned inside it.
-               Several declarations below look redundant on a bare page and are not: they
-               defend against a theme's global `button {}` rule. Measured in Chrome against
-               the StyleShout stylesheet the SantaCena pages use, a tile without them picks
-               up 36px of side padding, a 16px bottom margin — which shows, because it adds
-               to the row gap and leaves the grid spaced unevenly — and .35em letter-
-               spacing. A class outranks an element selector, so restating the properties
-               here is enough; !important is not needed. */
-            .hsig-tile{display:block;position:relative;box-sizing:border-box;
-              width:100%;height:auto;min-width:0;padding:100% 0 0;margin:0;overflow:hidden;
-              border:0;background:#ececec;cursor:pointer;border-radius:2px;
-              font-family:inherit;letter-spacing:normal;text-transform:none}
-            .hsig-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-              display:block;margin:0;transition:transform .45s ease,opacity .3s ease;opacity:0}
-            .hsig-tile img.is-ready{opacity:1}
-            .hsig-tile:hover img,.hsig-tile:focus-visible img{transform:scale(1.05)}
-            .hsig-tile:focus-visible{outline:2px solid var(--hsig-accent);outline-offset:2px}
-
-            /* Type badge for reels and carousels — a plain still gives no hint that
-               there's video or more photos behind the tile. */
-            .hsig-badge{position:absolute;top:8px;right:8px;width:22px;height:22px;
-              display:flex;align-items:center;justify-content:center;
-              color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5));pointer-events:none}
-            .hsig-badge svg{width:100%;height:100%;fill:currentColor}
-
-            .hsig-lb{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
-              background:rgba(0,0,0,.92);padding:24px;box-sizing:border-box}
-            .hsig-lb[hidden]{display:none}
-            .hsig-lb-fig{margin:0;max-width:900px;max-height:100%;display:flex;flex-direction:column;gap:14px}
-            .hsig-lb-img{max-width:100%;max-height:72vh;object-fit:contain;display:block;margin:0 auto;border-radius:2px}
-            .hsig-lb-cap{color:#f2f2f2;text-align:center;max-width:640px;margin:0 auto}
-            .hsig-lb-text{margin:0 0 10px;font-size:15px;line-height:1.55;white-space:pre-wrap;
-              max-height:22vh;overflow-y:auto}
-            .hsig-lb-link{display:inline-block;font-size:14px;color:#fff;text-decoration:none;
-              border:1px solid rgba(255,255,255,.55);border-radius:2px;padding:7px 16px;transition:background .15s}
-            .hsig-lb-link:hover,.hsig-lb-link:focus-visible{background:rgba(255,255,255,.14)}
-            /* Same defence as .hsig-tile — these are buttons too. */
-            .hsig-lb-close,.hsig-lb-nav{position:absolute;box-sizing:border-box;background:none;border:0;
-              color:#fff;cursor:pointer;width:auto;height:auto;min-width:0;line-height:1;padding:12px;margin:0;
-              font-family:inherit;letter-spacing:normal;opacity:.75;transition:opacity .15s}
-            .hsig-lb-close:hover,.hsig-lb-nav:hover,
-            .hsig-lb-close:focus-visible,.hsig-lb-nav:focus-visible{opacity:1}
-            .hsig-lb-close{top:8px;right:12px;font-size:38px}
-            .hsig-lb-nav{top:50%;transform:translateY(-50%);font-size:54px}
-            .hsig-lb-prev{left:4px}
-            .hsig-lb-next{right:4px}
-
-            @media (max-width:900px){.hsig{--hsig-cols:3}.hsig-title{font-size:25px}}
-            @media (max-width:560px){.hsig{--hsig-cols:2;--hsig-gap:7px;padding:38px 0}
-              .hsig-lb-nav{font-size:40px}.hsig-lb-text{max-height:16vh}}
-
-            @media (prefers-reduced-motion:reduce){
-              .hsig-tile img{transition:opacity .3s ease}
-              .hsig-tile:hover img,.hsig-tile:focus-visible img{transform:none}}
-            </style>
-
-            <script>
-            (function () {
-              var root = document.currentScript
-                ? document.currentScript.parentNode.querySelector('.hsig')
-                : document.querySelector('.hsig');
-              if (!root || root.dataset.hsigInit) return;
-              root.dataset.hsigInit = '1';
-
-              var cfg = {
-                endpoint: root.dataset.endpoint || '/wp-json/wp/v2/media',
-                marker:   root.dataset.marker   || 'igfeed',
-                count:    Math.max(1, Math.min(parseInt(root.dataset.count, 10) || 12, 48)),
-                profile:  root.dataset.profile  || '',
-                heading:  root.dataset.heading  || '',
-                cta:      root.dataset.cta      || 'View on Instagram'
-              };
-
-              var grid  = root.querySelector('.hsig-grid');
-              var lb    = root.querySelector('.hsig-lb');
-              var lbImg = root.querySelector('.hsig-lb-img');
-              var lbText= root.querySelector('.hsig-lb-text');
-              var lbLink= root.querySelector('.hsig-lb-link');
-              var items = [];
-              var at    = 0;
-              var lastFocus = null;
-
-              // WordPress's ?search= is a substring match over several fields, so the
-              // response is a superset of the gallery. The real set is whatever has a
-              // title of exactly `<marker>-<instagram id>`, which is what igGallery.js
-              // writes — anything else that merely mentions the marker is discarded.
-              var titleRe = new RegExp('^' + cfg.marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '-(\\d+)$');
-
-              var url = cfg.endpoint
-                + (cfg.endpoint.indexOf('?') === -1 ? '?' : '&')
-                + 'search=' + encodeURIComponent(cfg.marker)
-                + '&per_page=' + Math.min(cfg.count * 2, 100)
-                + '&orderby=date&order=desc'
-                + '&_fields=' + encodeURIComponent('id,title,date_gmt,caption,description,alt_text,source_url,media_details');
-
-              fetch(url, { credentials: 'omit' })
-                .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
-                .then(render)
-                .catch(function () { /* leave the section hidden — see the file header */ });
-
-              function render(rows) {
-                items = (rows || [])
-                  .map(toItem)
-                  .filter(Boolean)
-                  // Newest first by the date on the attachment, which sync-ig-gallery.js
-                  // sets to the Instagram publish time.
-                  //
-                  // This used to sort by Instagram media id, on the assumption that ids
-                  // grow over time. They do not — measured across 24 real items, that put
-                  // a 2024-08-26 post first and left the newest post of all out of the
-                  // grid entirely, because the slice below then kept the wrong twelve.
-                  // An id says nothing about when something was posted.
-                  //
-                  // WordPress is already asked for this order, so this mostly re-states
-                  // it; it matters for items uploaded before the job started stamping
-                  // dates, which fall back to their upload time and would otherwise be
-                  // interleaved by accident rather than by date.
-                  .sort(function (a, b) { return b.when - a.when; })
-                  .slice(0, cfg.count);
-
-                if (!items.length) return;
-
-                var heading = root.querySelector('.hsig-title');
-                if (cfg.heading) heading.textContent = cfg.heading; else heading.remove();
-
-                var handle = root.querySelector('.hsig-handle');
-                if (cfg.profile) { handle.href = cfg.profile; handle.textContent = cfg.cta; }
-                else handle.remove();
-
-                var frag = document.createDocumentFragment();
-                items.forEach(function (item, i) { frag.appendChild(cell(item, i)); });
-                grid.appendChild(frag);
-
-                root.hidden = false;
-                wireLightbox();
-              }
-
-              function toItem(row) {
-                var title = row && row.title && (row.title.rendered || row.title.raw) || '';
-                var m = String(title).trim().match(titleRe);
-                if (!m || !row.source_url) return null;
-
-                // description holds the permalink on its own first line, plus optional
-                // `video` / `carousel:N` markers — see buildDescription in igGallery.js.
-                var meta  = stripHtml(row.description && row.description.rendered || '');
-                var lines = meta.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
-                // Matched on instagram.com specifically rather than "the first line that
-                // looks like a URL": WordPress prepends its own attachment markup to
-                // description.rendered, and anything it ever contributes here must not be
-                // mistaken for the permalink.
-                var link  = repairDashes(lines.filter(isInstagramUrl)[0] || '');
-
-                return {
-                  igId:     m[1],
-                  // date_gmt has no timezone marker, and Safari reads such a string as
-                  // local time — hence the explicit Z. A row with no parseable date sorts
-                  // last rather than poisoning the comparison with NaN.
-                  when:     dateOf(row.date_gmt),
-                  full:     row.source_url,
-                  thumb:    sizedUrl(row, ['medium_large', 'medium', 'thumbnail']) || row.source_url,
-                  srcset:   buildSrcset(row),
-                  alt:      row.alt_text || '',
-                  caption:  stripHtml(row.caption && row.caption.rendered || ''),
-                  link:     link,
-                  isVideo:  lines.indexOf('video') !== -1,
-                  carousel: lines.some(function (l) { return l.indexOf('carousel:') === 0; })
-                };
-              }
-
-              function dateOf(value) {
-                if (!value) return -Infinity;
-                var t = Date.parse(/[Zz]|[+-]\d{2}:?\d{2}$/.test(value) ? value : value + 'Z');
-                return isNaN(t) ? -Infinity : t;
-              }
-
-              function isInstagramUrl(line) {
-                return /^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|reels|tv)\//i.test(line);
-              }
-
-              // WordPress runs wptexturize over description.rendered, which rewrites a
-              // literal "--" as an en dash and "---" as an em dash. Instagram shortcodes
-              // are [A-Za-z0-9_-], so a dash character inside a permalink can only have
-              // come from that filter and reversing it is unambiguous. Seen live on
-              // holysupper.org: C--qQ4muM1- was stored correctly and served back as
-              // C&#8211;qQ4muM1-, which is a 404 on Instagram.
-              function repairDashes(url) {
-                return url.replace(/—/g, '---').replace(/–/g, '--');
-              }
-
-              function sizes(row) {
-                return (row.media_details && row.media_details.sizes) || {};
-              }
-
-              function sizedUrl(row, preference) {
-                var s = sizes(row);
-                for (var i = 0; i < preference.length; i++) {
-                  if (s[preference[i]] && s[preference[i]].source_url) return s[preference[i]].source_url;
-                }
-                return null;
-              }
-
-              // Lets the browser pick a tile-sized derivative instead of pulling the
-              // full-resolution upload for a thumbnail that is never wider than ~300px.
-              function buildSrcset(row) {
-                var s = sizes(row);
-                var out = [];
-                Object.keys(s).forEach(function (k) {
-                  if (k === 'full') return;
-                  if (s[k] && s[k].source_url && s[k].width) out.push(s[k].source_url + ' ' + s[k].width + 'w');
-                });
-                return out.join(', ');
-              }
-
-              function cell(item, index) {
-                var li = document.createElement('li');
-                li.className = 'hsig-cell';
-
-                var btn = document.createElement('button');
-                btn.className = 'hsig-tile';
-                btn.type = 'button';
-                btn.setAttribute('aria-label', item.alt || 'Open Instagram post');
-
-                var img = document.createElement('img');
-                // setAttribute rather than the properties: `loading` and `decoding` are
-                // reflected inconsistently (jsdom doesn't implement them at all), and a
-                // lazy-loading hint that silently doesn't apply would mean every tile
-                // fetches up front.
-                img.setAttribute('src', item.thumb);
-                if (item.srcset) {
-                  img.setAttribute('srcset', item.srcset);
-                  img.setAttribute('sizes', '(max-width:560px) 50vw, (max-width:900px) 33vw, 25vw');
-                }
-                img.setAttribute('alt', item.alt);
-                img.setAttribute('loading', 'lazy');
-                img.setAttribute('decoding', 'async');
-                // Fade in only once decoded, so a slow connection shows the placeholder
-                // rather than a half-painted image.
-                if (img.complete) img.classList.add('is-ready');
-                else img.addEventListener('load', function () { img.classList.add('is-ready'); });
-                // A tile whose file 404s would otherwise sit as a grey square forever.
-                img.addEventListener('error', function () { li.remove(); });
-
-                btn.appendChild(img);
-                if (item.isVideo || item.carousel) btn.appendChild(badge(item));
-                btn.addEventListener('click', function () { open(index); });
-
-                li.appendChild(btn);
-                return li;
-              }
-
-              function badge(item) {
-                var span = document.createElement('span');
-                span.className = 'hsig-badge';
-                span.innerHTML = item.isVideo
-                  ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
-                  : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 1H4a2 2 0 0 0-2 2v13h2V3h11V1zm4 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/></svg>';
-                return span;
-              }
-
-              function open(index) {
-                at = index;
-                lastFocus = document.activeElement;
-                paint();
-                lb.hidden = false;
-                document.addEventListener('keydown', onKey);
-                root.querySelector('.hsig-lb-close').focus();
-              }
-
-              function close() {
-                lb.hidden = true;
-                document.removeEventListener('keydown', onKey);
-                if (lastFocus && lastFocus.focus) lastFocus.focus();
-              }
-
-              function step(delta) {
-                at = (at + delta + items.length) % items.length;
-                paint();
-              }
-
-              function paint() {
-                var item = items[at];
-                lbImg.src = item.full;
-                lbImg.alt = item.alt;
-                lbText.textContent = item.caption;
-                lbText.hidden = !item.caption;
-                if (item.link) { lbLink.href = item.link; lbLink.textContent = cfg.cta; lbLink.hidden = false; }
-                else lbLink.hidden = true;
-
-                var many = items.length > 1;
-                root.querySelector('.hsig-lb-prev').hidden = !many;
-                root.querySelector('.hsig-lb-next').hidden = !many;
-              }
-
-              function onKey(e) {
-                if (e.key === 'Escape') close();
-                else if (e.key === 'ArrowLeft') step(-1);
-                else if (e.key === 'ArrowRight') step(1);
-              }
-
-              function wireLightbox() {
-                root.querySelector('.hsig-lb-close').addEventListener('click', close);
-                root.querySelector('.hsig-lb-prev').addEventListener('click', function () { step(-1); });
-                root.querySelector('.hsig-lb-next').addEventListener('click', function () { step(1); });
-                // Backdrop click closes; clicks on the photo or caption must not.
-                lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
-              }
-
-              // WordPress returns caption/description as rendered HTML (wrapped in <p>).
-              // Parsed via the HTML parser rather than a regex so entities come back as
-              // real characters, and through template.content so nothing in it can load
-              // or execute while being read.
-              function stripHtml(html) {
-                if (!html) return '';
-                var t = document.createElement('template');
-                t.innerHTML = html;
-                return (t.content.textContent || '').trim();
-              }
-            })();
-            </script>
-
-            </section> <!-- end gallery -->
+            </section> <!-- end videos -->
 
             
 
@@ -6262,7 +6092,7 @@ communion with Christ.</h1>
         <footer id="colophon" class="s-footer">
             <div class="row">
                 <div class="column lg-12 ss-copyright">
-                    <h6><span>The Light of the World Church | Holy Supper © Copyright 2026</span>
+                    <h6><span>Iglesia La Luz del Mundo | Santa Convocación © Copyright 2026</span>
                       <span><a href="https://www.styleshout.com/">&nbsp;</a></span></h6>
                 </div>
             </div>
@@ -6999,7 +6829,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
     <!-- NOTICIAS DINÁMICAS
     ==================================================
-    Lee las entradas publicadas en holysupper.org por la API REST de
+    Lee las entradas publicadas en santaconvocacionlldm.org por la API REST de
     WordPress y las pinta en la sección #about. No hay nada que regenerar ni
     volver a subir: en cuanto una entrada se publica allá, aparece aquí.
 
@@ -7016,15 +6846,15 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
         'use strict';
 
         /* --- configuración --------------------------------------------------
-         * categoria : 2 = "Holy Supper". Pon null para traer todas.
+         * categoria : 11 = "Santa Convocación". Pon null para traer todas.
          * destacadas: cuántas van al bloque de arriba (1 principal + 3 al lado).
          *             Es también el `offset` del retículo de tres columnas.
          * porPagina : cuántas tarjetas trae cada tanda del retículo.
          * refrescoMs: cada cuánto se comprueba si hay entradas nuevas.
          * ------------------------------------------------------------------- */
         var CFG = {
-            sitio      : 'https://holysupper.org',
-            categoria  : 2,
+            sitio      : 'https://santaconvocacionlldm.org',
+            categoria  : 11,
             destacadas : 4,
             porPagina  : 6,
             refrescoMs : 5 * 60 * 1000
@@ -7070,7 +6900,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             var d = new Date(iso);
             if (isNaN(d)) { return ''; }
             try {
-                return d.toLocaleDateString('en-US', {
+                return d.toLocaleDateString('es-ES', {
                     day: 'numeric', month: 'long', year: 'numeric'
                 });
             } catch (e) {
@@ -7099,7 +6929,11 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 'orderby=date',
                 'order=desc',
                 '_embed=wp:featuredmedia',
-                '_fields=id,link,date,title,excerpt,_links'
+                '_fields=id,link,date,title,excerpt,_links',
+                // Los videos tienen su propia sección más abajo. Sin esto
+                // cada reel saldría en las dos, porque la etiqueta no quita
+                // la entrada de su categoría.
+                'tags_exclude=19'
             ];
             if (CFG.categoria) { q.push('categories=' + CFG.categoria); }
             return CFG.sitio + '/wp-json/wp/v2/posts?' + q.join('&');
@@ -7150,7 +6984,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             var art = document.createElement('article');
             art.className = 'wp-news__card wp-news__card--' + variante;
 
-            var titulo = aTexto(post.title && post.title.rendered) || 'No title';
+            var titulo = aTexto(post.title && post.title.rendered) || 'Sin título';
             var conResumen = variante !== 'side';
             var resumen = conResumen
                 ? recortar(aTexto(post.excerpt && post.excerpt.rendered), variante === 'main' ? 260 : 150)
@@ -7184,8 +7018,8 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 var leer = document.createElement('a');
                 leer.className = 'wp-news__link';
                 leer.href = post.link;
-                leer.textContent = 'Read post';
-                leer.setAttribute('aria-label', 'Read post: ' + titulo);
+                leer.textContent = 'Leer publicación';
+                leer.setAttribute('aria-label', 'Leer publicación: ' + titulo);
                 cuerpo.appendChild(leer);
             }
 
@@ -7261,7 +7095,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 var b = document.createElement('button');
                 b.type = 'button';
                 b.className = 'wp-news__retry';
-                b.textContent = 'Retry';
+                b.textContent = 'Reintentar';
                 b.addEventListener('click', function () {
                     if (state.enDestacadas) { cargarMas(); } else { cargar(); }
                 });
@@ -7275,10 +7109,10 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         function pie() {
             if (!state.total) { foot.textContent = ''; return; }
-            foot.textContent = 'Showing ' + mostradas() + ' of ' + state.total + ' posts · ';
+            foot.textContent = 'Mostrando ' + mostradas() + ' de ' + state.total + ' publicaciones · ';
             var a = document.createElement('a');
             a.href = CFG.sitio;
-            a.textContent = 'view the full site';
+            a.textContent = 'ver el sitio completo';
             foot.appendChild(a);
         }
 
@@ -7300,7 +7134,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             state.enRejilla = 0;
             state.enDestacadas = 0;
             esqueletos();
-            mensaje('Loading posts…');
+            mensaje('Cargando publicaciones…');
 
             traer(0, CFG.destacadas + CFG.porPagina).then(function (res) {
                 limpiarEsqueletos();
@@ -7310,7 +7144,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 if (!res.posts.length) {
                     lead.hidden = true;
                     gridTitulo.hidden = true;
-                    mensaje('No posts yet.');
+                    mensaje('Todavía no hay publicaciones.');
                     more.hidden = true;
                     foot.textContent = '';
                     return;
@@ -7328,7 +7162,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             }).catch(function (err) {
                 limpiarEsqueletos();
                 lead.hidden = !state.enDestacadas;
-                mensaje('Could not load the posts (' + err.message + ').', true, true);
+                mensaje('No se pudieron cargar las publicaciones (' + err.message + ').', true, true);
             }).then(function () {
                 state.cargando = false;
                 more.disabled = false;
@@ -7340,7 +7174,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
             if (state.cargando) { return; }
             state.cargando = true;
             more.disabled = true;
-            mensaje('Loading more…');
+            mensaje('Cargando más…');
 
             traer(CFG.destacadas + state.enRejilla, CFG.porPagina).then(function (res) {
                 state.total = res.total;
@@ -7349,7 +7183,7 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
                 repasarBotonMas();
                 pie();
             }).catch(function () {
-                mensaje('Could not load more posts.', true, true);
+                mensaje('No se pudieron cargar más publicaciones.', true, true);
             }).then(function () {
                 state.cargando = false;
                 more.disabled = false;
@@ -7401,6 +7235,348 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
         });
         window.addEventListener('online', mirarNovedades);
 
+        cargar();
+    })();
+    </script>
+
+
+    <!-- VIDEOS DINÁMICOS
+    ==================================================
+    La misma API REST que las noticias, filtrada por la etiqueta "Video"
+    (`tags=19`). Quien pone esa etiqueta es el bot de lldm-fb-sync: al
+    sincronizar mira el permalink de Facebook y, si es un reel / watch /
+    videos, etiqueta la entrada — ver resolveVideoTags en wordpress.js.
+
+    Por eso el listado de noticias de arriba lleva `tags_exclude=19`: sin
+    eso el mismo reel saldría en las dos secciones.
+
+    Bloque aparte del de noticias, y no una segunda instancia de aquél, porque
+    aquí no hay destacada ni laterales: es un retículo y ya. Reutiliza sus
+    clases de tarjeta (.wp-news__card), no su código.
+    ================================================== -->
+    <script>
+    (function () {
+        'use strict';
+
+        var CFG = {
+            sitio      : 'https://santaconvocacionlldm.org',
+            etiqueta   : 19,          // id de la etiqueta "Video" en este sitio
+            porPagina  : 8,
+            refrescoMs : 5 * 60 * 1000
+        };
+
+        var grid   = document.getElementById('wp-videos-grid');
+        var status = document.getElementById('wp-videos-status');
+        var more   = document.getElementById('wp-videos-more');
+        var foot   = document.getElementById('wp-videos-foot');
+
+        if (!grid) { return; }
+
+        var seccion = document.getElementById('videos');
+        var enlaceNav = document.querySelector('.header-nav a[href="#videos"], .header-nav__list a[href="#videos"]');
+
+        var state = {
+            pintadas     : 0,
+            total        : 0,
+            masReciente  : null,
+            cargando     : false,
+            ultimaMirada : 0
+        };
+
+        var scratch = document.createElement('div');
+        function aTexto(html) {
+            scratch.innerHTML = html || '';
+            return (scratch.textContent || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function recortar(texto, max) {
+            if (texto.length <= max) { return texto; }
+            var corte = texto.slice(0, max);
+            var esp = corte.lastIndexOf(' ');
+            return (esp > max * 0.6 ? corte.slice(0, esp) : corte) + '…';
+        }
+
+        function fecha(iso) {
+            var d = new Date(iso);
+            if (isNaN(d)) { return ''; }
+            try {
+                return d.toLocaleDateString('es-ES', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+            } catch (e) {
+                return d.toISOString().slice(0, 10);
+            }
+        }
+
+        function imagen(post) {
+            var emb = post._embedded && post._embedded['wp:featuredmedia'];
+            var media = emb && emb[0];
+            if (!media || media.code) { return null; }
+            var sizes = (media.media_details && media.media_details.sizes) || {};
+            var pick = sizes.medium_large || sizes.large || sizes.medium || null;
+            return {
+                src: (pick && pick.source_url) || media.source_url || null,
+                alt: aTexto(media.alt_text || '')
+            };
+        }
+
+        function url(desde, cuantas) {
+            var q = [
+                'per_page=' + cuantas,
+                'offset=' + desde,
+                'orderby=date',
+                'order=desc',
+                'tags=' + CFG.etiqueta,
+                '_embed=wp:featuredmedia',
+                '_fields=id,link,date,title,excerpt,_links'
+            ];
+            return CFG.sitio + '/wp-json/wp/v2/posts?' + q.join('&');
+        }
+
+        function traer(desde, cuantas) {
+            return fetch(url(desde, cuantas), { credentials: 'omit' })
+                .then(function (r) {
+                    if (!r.ok) { throw new Error('HTTP ' + r.status); }
+                    return r.json().then(function (datos) {
+                        return {
+                            posts : datos,
+                            total : parseInt(r.headers.get('X-WP-Total'), 10) || datos.length
+                        };
+                    });
+                });
+        }
+
+        /* --- pintado -------------------------------------------------------- */
+
+        function miniatura(post) {
+            var enlace = document.createElement('a');
+            enlace.className = 'wp-news__thumb';
+            enlace.href = post.link;
+            enlace.setAttribute('aria-hidden', 'true');
+            enlace.setAttribute('tabindex', '-1');
+
+            var img = imagen(post);
+            if (img && img.src) {
+                var el = document.createElement('img');
+                el.src = img.src;
+                el.alt = img.alt || '';
+                el.loading = 'lazy';
+                el.decoding = 'async';
+                enlace.appendChild(el);
+            } else {
+                enlace.className += ' wp-news__thumb--empty';
+                enlace.textContent = 'LLDM';
+            }
+
+            var play = document.createElement('span');
+            play.className = 'wp-videos__play';
+            enlace.appendChild(play);
+            return enlace;
+        }
+
+        function tarjeta(post) {
+            var art = document.createElement('article');
+            art.className = 'wp-news__card wp-news__card--grid';
+
+            var titulo = aTexto(post.title && post.title.rendered) || 'Sin título';
+
+            var cuerpo = document.createElement('div');
+            cuerpo.className = 'wp-news__body';
+
+            var f = document.createElement('p');
+            f.className = 'wp-news__date';
+            f.textContent = fecha(post.date);
+
+            var h = document.createElement('h4');
+            h.className = 'wp-news__title';
+            var ha = document.createElement('a');
+            ha.href = post.link;
+            ha.textContent = titulo;
+            h.appendChild(ha);
+
+            cuerpo.appendChild(f);
+            cuerpo.appendChild(h);
+
+            /* Sin resumen, a diferencia del retículo de noticias. El excerpt
+             * que genera WordPress sale del cuerpo de la entrada, y el cuerpo
+             * de un video es la leyenda (cuya primera línea ya es el titular)
+             * seguida del texto de reserva del embed — así que la tarjeta
+             * repetía su propio título y remataba con "Ver la publicación
+             * original en Facebook Ver en Facebook". Las laterales de noticias
+             * tampoco lo llevan, o sea que esto no es una excepción. */
+
+            var ver = document.createElement('a');
+            ver.className = 'wp-news__link';
+            ver.href = post.link;
+            ver.textContent = 'Ver video';
+            ver.setAttribute('aria-label', 'Ver video: ' + titulo);
+            cuerpo.appendChild(ver);
+
+            art.appendChild(miniatura(post));
+            art.appendChild(cuerpo);
+            return art;
+        }
+
+        function pintar(posts, anexar) {
+            if (!anexar) { grid.innerHTML = ''; state.pintadas = 0; }
+            var frag = document.createDocumentFragment();
+            posts.forEach(function (post) { frag.appendChild(tarjeta(post)); });
+            grid.appendChild(frag);
+            state.pintadas += posts.length;
+        }
+
+        function esqueletos() {
+            var frag = document.createDocumentFragment();
+            for (var i = 0; i < CFG.porPagina; i++) {
+                var s = document.createElement('div');
+                s.className = 'wp-videos__skeleton';
+                frag.appendChild(s);
+            }
+            grid.appendChild(frag);
+        }
+
+        function limpiarEsqueletos() {
+            var s = grid.querySelectorAll('.wp-videos__skeleton');
+            for (var i = 0; i < s.length; i++) { s[i].parentNode.removeChild(s[i]); }
+        }
+
+        function mensaje(texto, esError, conReintento) {
+            status.hidden = !texto;
+            status.textContent = texto || '';
+            status.className = 'wp-videos__status' + (esError ? ' wp-videos__status--error' : '');
+            if (conReintento) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'wp-videos__retry';
+                b.textContent = 'Reintentar';
+                b.addEventListener('click', function () {
+                    if (state.pintadas) { cargarMas(); } else { cargar(); }
+                });
+                status.appendChild(b);
+            }
+        }
+
+        function pie() {
+            if (!state.total) { foot.textContent = ''; return; }
+            foot.textContent = 'Mostrando ' + state.pintadas + ' de ' + state.total + ' videos · ';
+            var a = document.createElement('a');
+            a.href = CFG.sitio;
+            a.textContent = 'ver el sitio completo';
+            foot.appendChild(a);
+        }
+
+        function repasarBotonMas() {
+            more.hidden = state.pintadas >= state.total;
+        }
+
+        /* La sección entera se esconde mientras no haya ni un video, igual que
+         * hace la galería de Instagram en index5Eng: un sitio sin reels no
+         * debe enseñar un titular "Videos" sobre un hueco vacío, y el enlace
+         * del menú tampoco debe llevar a la nada. */
+        function visible(si) {
+            if (seccion) { seccion.hidden = !si; }
+            if (enlaceNav && enlaceNav.parentNode) { enlaceNav.parentNode.hidden = !si; }
+        }
+
+        /* --- carga ----------------------------------------------------------- */
+
+        function cargar() {
+            if (state.cargando) { return; }
+            state.cargando = true;
+            more.disabled = true;
+
+            grid.innerHTML = '';
+            state.pintadas = 0;
+            esqueletos();
+            mensaje('Cargando videos…');
+
+            traer(0, CFG.porPagina).then(function (res) {
+                limpiarEsqueletos();
+                state.total = res.total;
+                state.ultimaMirada = Date.now();
+
+                if (!res.posts.length) {
+                    visible(false);
+                    mensaje('Todavía no hay videos.');
+                    more.hidden = true;
+                    foot.textContent = '';
+                    return;
+                }
+
+                visible(true);
+                state.masReciente = res.posts[0].id;
+                pintar(res.posts, false);
+                mensaje('');
+                repasarBotonMas();
+                pie();
+            }).catch(function (err) {
+                limpiarEsqueletos();
+                // Un fallo de red no es lo mismo que "no hay videos": si ya
+                // había algo pintado se deja a la vista y sólo se avisa.
+                if (!state.pintadas) { visible(false); }
+                mensaje('No se pudieron cargar los videos (' + err.message + ').', true, true);
+            }).then(function () {
+                state.cargando = false;
+                more.disabled = false;
+            });
+        }
+
+        function cargarMas() {
+            if (state.cargando) { return; }
+            state.cargando = true;
+            more.disabled = true;
+            mensaje('Cargando más…');
+
+            traer(state.pintadas, CFG.porPagina).then(function (res) {
+                state.total = res.total;
+                pintar(res.posts, true);
+                mensaje('');
+                repasarBotonMas();
+                pie();
+            }).catch(function () {
+                mensaje('No se pudieron cargar más videos.', true, true);
+            }).then(function () {
+                state.cargando = false;
+                more.disabled = false;
+            });
+        }
+
+        function mirarNovedades() {
+            if (state.cargando || document.hidden) { return; }
+            state.ultimaMirada = Date.now();
+
+            traer(0, 1).then(function (res) {
+                var nuevo = res.posts[0];
+                // Sin masReciente todavía (la primera carga no encontró nada)
+                // cualquier video nuevo tiene que entrar: es lo que resucita la
+                // sección en cuanto se publica el primero.
+                if (!nuevo) { return; }
+                if (nuevo.id === state.masReciente) {
+                    if (res.total !== state.total) {
+                        state.total = res.total;
+                        repasarBotonMas();
+                        pie();
+                    }
+                    return;
+                }
+                if (state.pintadas <= CFG.porPagina) { cargar(); }
+            }).catch(function () { /* sin conexión: al siguiente ciclo */ });
+        }
+
+        /* --- arranque -------------------------------------------------------- */
+
+        more.addEventListener('click', cargarMas);
+
+        setInterval(mirarNovedades, CFG.refrescoMs);
+
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && Date.now() - state.ultimaMirada > 60000) { mirarNovedades(); }
+        });
+        window.addEventListener('online', mirarNovedades);
+
+        // Escondida de entrada: si el sitio no tiene videos, el visitante no
+        // llega a ver aparecer y desaparecer la sección.
+        visible(false);
         cargar();
     })();
     </script>

@@ -12,11 +12,53 @@ index5.html   igual que index4, pero sin el video: en su hueco va el
               cartel de la Santa Cena 2026
 index5Eng.html  la versión en inglés de index5, con las noticias de
               holysupper.org en vez de santaconvocacionlldm.org
+index6/7      variantes intermedias: el video en grande (6) y las
+              noticias en dos bloques al estilo de lldmcentenario.org (7)
+index8.html   lo que hay hoy en santaconvocacionlldm.org más la
+index8Eng.html  sección "Videos" (ver abajo). Son las páginas al día.
+santa-cena-page/      copia de lo que está pegado ahora mismo en el
+santa-cena-pageEN/    plugin de HTML estático de cada sitio
 images/       imágenes propias del repositorio
 ```
 
 `index4.html` se queda como está a propósito, para poder comparar las dos o
 volver atrás. Los cambios nuevos van en `index5.html`.
+
+## `index8.html` / `index8Eng.html` — con sección de Videos
+
+Las páginas al día. Salen de las que están publicadas ahora mismo en
+santaconvocacionlldm.org y holysupper.org, más una sección nueva.
+
+**No se editan a mano.** Se generan con `build_index8.py`, que vive en el otro
+repositorio (`santacena-elementor`): descarga las dos páginas en vivo y les
+aplica los mismos cinco cambios, de modo que lo que Ruben toque por el lado de
+WordPress viene incluido y las versiones en español e inglés no se separan.
+
+```
+cd /root/santacena-elementor
+python3 build_index8.py --fetch
+```
+
+### La sección "Videos"
+
+Debajo de las noticias, `#videos`: un retículo de cuatro columnas con la
+miniatura, la chapa de reproducir, la fecha y el titular. Trae 8 de golpe y
+tiene su propio "ver más".
+
+Lo que decide qué entra ahí es **una etiqueta de WordPress llamada `video`**
+(id 19 en santaconvocacionlldm.org, 9 en holysupper.org). Quien la pone es el
+bot de `/root/lldm-fb-sync`: al sincronizar mira el permalink de Facebook y, si
+es un reel, un `/watch` o un `/videos/`, etiqueta la entrada — y avisa por
+Telegram de que ha detectado un video.
+
+Por eso el listado de noticias pide `tags_exclude=<id>`: sin eso el mismo reel
+saldría en las dos secciones. **Los dos parámetros van juntos**; si algún día se
+cambia el id de la etiqueta hay que cambiarlo en los dos sitios de la página
+(están los dos en `build_index8.py`).
+
+La sección **se esconde entera, y su entrada del menú con ella, mientras no
+haya ni un video** — igual que la galería de Instagram de `index5Eng`. Si
+desaparece, mirar la etiqueta antes que la página.
 
 ## `index5.html` — sin video, con el cartel
 
